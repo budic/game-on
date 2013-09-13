@@ -12,11 +12,15 @@
       <ul class="dropdown-menu pull-right">
         <li class="dropdown-link"><%= link_to "Upcoming Games", '/' %></li>
         <li class="dropdown-link"><%= link_to "Search for Games", '/recurring_events/nearby' %></li>
-        
+        <li class="divider visible-sm visible-xs"></li>
+        <li class="dropdown-link visible-sm visible-xs"><%= link_to 'My Weekly Games', '/rec_event_follows/mygames' %></li>
+        <li class="dropdown-link visible-sm visible-xs"><%= link_to 'Locations', '/locations/nearby' %></li>
+        <li class="divider"></li>
         <li class="dropdown-link"><%= link_to('Edit account', edit_user_registration_path) %></li>
         <li class="dropdown-link"><%= link_to('Edit profile', editself_user_profiles_path ) %></li>
         
         <% if current_user.has_role? :admin %>
+        <li class="divider"></li>
         <li class="hidden-xs dropdown-link">
           <%= link_to('Admin', users_path) %>
         </li>
