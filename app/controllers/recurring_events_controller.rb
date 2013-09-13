@@ -38,6 +38,27 @@ class RecurringEventsController < ApplicationController
     @recurring_event = RecurringEvent.new(recurring_event_params)
     respond_to do |format|
       if @recurring_event.save
+        r = @recurring_event
+        time = Time.new
+        doffset =  r.day - time.wday
+        if doffset < 0
+          doffset = 7 + (r.day - time.wday)
+        end
+        
+        stime = Time.new( time.year, time.month, time.day, r.start_time.hour, r.start_time.min ) + doffset.days
+        etime = Time.new( time.year, time.month, time.day, r.end_time.hour, r.end_time.min ) + doffset.days
+         
+        ev = Event.find_or_create_by_recurring_event_id_and_start_date( r.id , stime )
+        ev.name = r.name
+        rtime = stime - 1.day
+        ev.next_reminder_time = rtime
+        ev.next_reminder_type = 0
+        ev.start_date = stime 
+        ev.end_date = etime
+        ev.game_type_id = r.game_type_id
+        ev.location_id = r.location_id
+        ev.save()
+        
         format.html { redirect_to @recurring_event, notice: 'Recurring event was successfully created.' }
         format.json { render action: 'show', status: :created, location: @recurring_event }
       else
