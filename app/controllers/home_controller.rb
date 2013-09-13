@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   
   def index    
     #@event_invites = EventInvite.includes(:event).where("user_id = ? AND events.start_date > ? ", current_user.id, Time.now.to_date ).references(:event)
-    @event_invites = EventInvite.includes(:event).where("user_id = ? AND events.start_date > ? ", current_user.id, Time.now.beginning_of_day ).references(:event)
+    @event_invites = EventInvite.includes(:event).where("user_id = ? AND events.start_date > ? ", current_user.id, Time.now.beginning_of_day ).references(:event).order('events.start_date')
   end
   
   def create

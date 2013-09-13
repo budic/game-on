@@ -19,8 +19,10 @@ class RecurringEventsController < ApplicationController
   def new
     @recurring_event = RecurringEvent.new
     @recurring_event.game_type_id = 1
-    @recurring_event.location_id = params[:location_id]
-    @location = Location.find( params[:location_id] )
+    if params[:location_id]
+      @recurring_event.location_id = params[:location_id]
+      @location = Location.find( params[:location_id] )
+    end
   end
 
   # GET /recurring_events/1/edit
@@ -77,7 +79,7 @@ class RecurringEventsController < ApplicationController
           #params[:search] = request.location.address
     end
     
-    @recurring_events  = RecurringEvent.joins(:location).near(params[:search], 20)
+    @recurring_events  = RecurringEvent.joins(:location).near(params[:search], 20).order(:day, :start_time)
   end
 
   def follow

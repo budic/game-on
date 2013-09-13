@@ -1,0 +1,29 @@
+<%= form_tag("/locations/nearby", {method: "get"}) do %>
+<%= text_field_tag(:search, params[:search],  {class: 'col-lg-10 col-md-10 col-sm-9 col-xs-9', :autofocus => true}) %>
+<%= submit_tag("Search", {class: 'btn btn-success btn-xs col-lg-2 col-md-2 col-sm-3 col-xs-3'}) %>
+<% end %>
+<br><br>
+<% if !@locations.count.zero? %>
+  <% @locations.each do | l | %>
+    <div class="location">
+      <%= link_to l do %>
+        <div style='position:relative'>
+          <span class='linkedspan'></span>       
+          <span>
+            <strong>
+            <%= link_to l.name,  l %> 
+            </strong>
+          </span> 
+          <span class='pull-right'><%= number_with_precision(l.distance, :precision => 1) %> miles away</span>     
+          <div>
+            <%= l.address %>
+          </div>
+        </div>
+      <br>
+      <% end %>
+    </div>
+  <% end %>
+  <% else %>
+  <p> No locations found near the search address. </p>
+<p> 
+<% end %>

@@ -1,6 +1,6 @@
-<% @location.recurring_events.each do | r | %>
+<% @location.recurring_events.all(:order => "day, start_time").each do | r | %>
   <%= link_to r do %>
-  <div style='position:relative; background-color:#efe; padding: 3px'>
+  <div style='position:relative; background-color:#efe; padding: 5px; margin-bottom:5px'>
     <span class='linkedspan'></span>       
     <span>
       <strong>
@@ -20,7 +20,7 @@
     <div > <%= time %> </div>
     <span class="stars"> <%= r.level %></span> 
   </div>
-  <br>
+  
   <% end %>
 <% end %>
 

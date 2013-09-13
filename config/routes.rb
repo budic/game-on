@@ -1,6 +1,10 @@
 GameOn::Application.routes.draw do
 
-  resources :rec_event_follows
+  resources :rec_event_follows do
+    collection do
+      get 'mygames'
+    end
+  end
 
   resources :event_invites
 

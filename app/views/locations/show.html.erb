@@ -3,12 +3,15 @@
 <p>
   <%= @location.address %>
 </p>
+<div class="collapse-group">
+   <div class="collapse">
+      <addressmap><%= @location.address %></addressmap>
+    </div>
+    <a id="mapbutton" class="btn btn-info" style="color:#fff" href="#">
+     <span class="glyphicon glyphicon-map-marker"></span> View map &raquo;</a>
+</div>
+<br>
 
-<addressmap><%= @location.address %></addressmap>
-<br><br>
-<% if can? :update, @location %>
-<%= link_to 'Edit Location', edit_location_path(@location), :class => 'btn btn-primary', :style => "color:#ffffff" %> 
-<% end %>
 <% if !@location.recurring_events.count.zero? %>
   <h4>Weekly Games</h4>
   <%= render 'recurring_events' %>
@@ -18,4 +21,7 @@
   <%= link_to 'Add Weekly Game', new_recurring_event_path(location_id: @location), :class => 'btn btn-success', :style => "color:#ffffff" %>
 <% end %>
 <br><br>
+<% if can? :update, @location %>
+<%= link_to 'Edit Location', edit_location_path(@location), :class => 'btn btn-primary', :style => "color:#ffffff" %> 
+<% end %>
 

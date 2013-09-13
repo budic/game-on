@@ -65,7 +65,7 @@ class LocationsController < ApplicationController
   
   def nearby
     if !params[:search]
-      params[:search] = request.location.address
+      params[:search] = get_home_address().presence || request.location.address
     end   
     @locations  = Location.near(params[:search], 20) 
   end
@@ -76,6 +76,11 @@ class LocationsController < ApplicationController
       @location = Location.find(params[:id])
     end
 
+    def get_home_address
+      profile = UserProfile.find_or_create_by_user_id( current_user.id)
+      return profile.home_address
+    end
+  
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
       params[:location]

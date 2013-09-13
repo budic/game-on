@@ -8,6 +8,11 @@ class RecEventFollowsController < ApplicationController
     @rec_event_follows = RecEventFollow.all
   end
 
+  def mygames
+    #@rec_event_follows = RecEventFollow.all
+    @rec_event_follows = RecEventFollow.includes(:recurring_event).where("user_id = ?", current_user.id).references(:recurring_event)
+  end
+  
   # GET /rec_event_follows/1
   # GET /rec_event_follows/1.json
   def show

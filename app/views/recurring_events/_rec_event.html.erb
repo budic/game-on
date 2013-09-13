@@ -23,14 +23,21 @@
     <%= @recurring_event.location.address %>
   </address>
 
+
 <div id="myeventbuttons">
   <%= render 'rec_event_buttons' %>
 </div>
 <br>
-<div class='col-md-10'>
-  <addressmap>
-    <%= @recurring_event.location.address %>
-  </addressmap>
+<div>
+
+  <div class="collapse-group">
+   <div class="collapse">
+      <addressmap><%= @recurring_event.location.address %></addressmap>
+    </div>
+   <a id="mapbutton" class="btn btn-info" style="color:#fff" href="#">
+     <span class="glyphicon glyphicon-map-marker"></span> View map &raquo;</a>
+   </div>
+
 </div>
 
 

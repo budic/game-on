@@ -1,0 +1,33 @@
+<% if @rec_event_follows %>
+  <% @rec_event_follows.each do |r | %>
+    <div class="mygames">
+      <%= link_to r.recurring_event do %>
+        <div style='position:relative'>
+          <span class='linkedspan'></span>       
+          <strong><%= link_to Date::DAYNAMES[ r.recurring_event.day ],  r.recurring_event.location.name  %> </strong>
+          <div>
+              <%= r.recurring_event.name %> - <%= r.recurring_event.game_type.name %>
+          </div>
+          <div>
+            <% time = "" %>
+            <%if r.recurring_event.start_time %>
+            <% time += r.recurring_event.start_time.strftime("%l:%M %P") %>
+            <% if r.recurring_event.end_time %>
+            <%time += " - " + r.recurring_event.end_time.strftime("%l:%M %P") %>
+            <% end %>
+            <% end %> 
+            <%= time %> 
+          </div>
+          <div>
+            <%= r.recurring_event.location.name %>
+          </div>
+          <span class="stars"><%= r.recurring_event.level %></span>   
+      </div>
+      <br>
+      <% end %>
+    </div>
+  <% end %>
+  <% else %>
+  <p> You do not have any recurring games </p>
+<p> 
+<% end %>
