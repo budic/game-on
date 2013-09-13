@@ -1,0 +1,93 @@
+body { padding-top: 50px; }
+$banner-color: #2ecc71;
+$height: 42px;
+
+.navbar {
+   background-color:  $banner-color; 
+   height: $height;
+   min-height: $height;
+   max-height: $height;
+   border: 0px;
+}
+
+.navbar-header {
+   height: $height;
+   min-height: $height;
+   max-height: $height;
+}
+
+.navbar-brand {
+   height: 38px;
+   min-height: 38px;
+   max-height: 38px;
+   padding: 0px;
+   color: #fff;
+   box-sizing: content-box;
+}
+
+.navbar .navbar-brand image a {
+   color: #fff;
+   height: $height;
+   min-height: $height;
+   max-height: $height;
+}
+
+.navbar-brand  > a:hover {
+  color: #fff;
+
+}
+
+.navbar a, .navbar a:hover > navbar-brand{
+  color: #fff;
+  &:visited {
+    color: #fff;
+  }
+    
+}
+        
+.navbar-nav > li > a {
+          padding-top: 0px;
+          padding-bottom: 0px; 
+}
+
+.nav .caret {
+   border-top-color: #fff;
+   border-top-color: #fff;
+}
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus,  .dropdown-toggle > a:hover{
+    background-color: $banner-color; 
+    border-color: #428bca; 
+    height: $height;
+    min-height: $height;
+    max-height: $height;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    background-color: $banner-color;
+    height: $height;
+    min-height: $height;
+    max-height: $height;}
+
+.navbar .dropdown-menu  > li > a {
+   color: #000;
+   background-color: #fff;
+   box-sizing: content-box;
+}
+
+.dropdown-toggle {
+   height: $height;
+    min-height: $height;
+    max-height: $height;
+  padding: 0px;
+}
+
+.alert-error {
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48; }
+  .alert-danger hr {
+    border-top-color: #e6c1c7; }
+  .alert-danger .alert-link {
+    color: #953b39; }

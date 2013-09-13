@@ -1,0 +1,36 @@
+<%= simple_form_for(@recurring_event) do |f| %>
+  <%= f.error_notification %>
+
+    <%= f.input :name %>
+    <%= f.association :game_type %>
+    
+    <label class="input select required">Day of week</label>
+    <%= f.select :day, Date::DAYNAMES.zip((0..6).to_a) %>
+    <label class="input select optional">Start Time</label>
+    <%= f.time_select :start_time,
+      :combined => true,
+      :default => Time.now.change(:hour => 11, :min => 30),
+      :minute_interval => 15,
+      :time_separator => "",
+      :start_hour => 0,
+      :start_minute => 30,
+      :end_hour => 23,
+      :end_minute => 30
+    %>
+    <label class="input select optional">End Time</label>
+    <%= f.time_select :end_time,
+      :combined => true,
+      :default => Time.now.change(:hour => 11, :min => 30),
+      :minute_interval => 15,
+      :time_separator => "",
+      :start_hour => 0,
+      :start_minute => 30,
+      :end_hour => 23,
+      :end_minute => 30
+    %> 
+    <%= f.input :location_id, :as => :hidden %>
+  <br>
+    <%= f.button :submit %>
+<% end %>
+
+

@@ -1,0 +1,41 @@
+<%= form_tag("/locations/nearby", {method: "get", class: 'input-append'}) do %>
+<%= label_tag("Find locations near") %>
+<%= text_field_tag(:search, params[:search], {class: 'input-xxlarge'} )%>
+<%= submit_tag("Search", {class: 'btn btn-info'}) %>
+<% end %>
+
+<% if !@locations.count.zero? %>
+<div class="rounded-corner">
+  <table >
+    <thead>
+      <tr>
+        <th>Location</th>
+        <th>Address</th>
+        <th>Distance</th>
+        <th></th>
+      </tr>
+    </thead>
+  
+    <tbody>
+   
+      <% @locations.each do | l | %>
+        <tr>
+          <td><%= link_to l.name, l %></td>
+          <td><%= l.address %></td>
+          <td><%= number_with_precision(l.distance, :precision => 1) %> miles</td>
+          <td></td>
+        </tr>
+      <% end %>
+    
+    </tbody>
+  </table>
+</div>
+  <% else %>
+  <p> No locations found near the search address. </p>
+<p> 
+<% end %>
+  <br>
+  <div class='linkbuttonholder'>
+    <%= link_to 'Add New Location', new_location_path, :class => 'linkbutton' %>
+  </div>
+

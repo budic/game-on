@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Game On!" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "App_Name" %>">
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => false %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => false %>
+    <%= csrf_meta_tags %>
+    <%= yield(:head) %>
+  </head>
+  <body>
+    <nav class="navbar navbar-fixed-top" role="navigation">
+      <%= render 'layouts/navigation' %>        
+    </nav>
+    
+    <div class="container pull-left col-lg-12 col-md-12 col-sm-12 col-xs-12">   
+      <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-3 col-md-3 hidden-sm hidden-xs sidebar">
+          <!--Sidebar content-->
+          <%= render 'layouts/sidebar' %>
+        </div>
+        <div id="main" role="main" class="col-lg-7 col-md-6 col-sm-9 col-xs-12">
+          <div class="content">   
+            <div class="content-window">
+              <%= render 'layouts/messages' %>
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+        
+    <footer>
+    </footer>
+        
+  </body>
+</html>

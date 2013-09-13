@@ -1,0 +1,12 @@
+<%= simple_form_for(@rec_event_follow) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <%= f.input :recurring_event_id %>
+    <%= f.input :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

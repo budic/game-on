@@ -1,0 +1,65 @@
+<div class='navbar navbar-brand pull-left'>
+   
+     <%= link_to "#{image_tag('volleyball.png')} Game On!".html_safe, root_path, :class => 'navbar-brand pull-left' %>
+  
+</div>
+
+
+  <ul class="nav pull-right">
+    <% if user_signed_in? %>     
+    <li class="dropdown pull-right">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu <b class="caret"></b></a>
+      <ul class="dropdown-menu pull-right">
+        <li class="dropdown-link"><%= link_to "Upcoming Games", '/' %></li>
+        <li class="dropdown-link"><%= link_to "Search for Games", '/recurring_events/nearby' %></li>
+        
+        <li class="dropdown-link"><%= link_to('Edit account', edit_user_registration_path) %></li>
+        <li class="dropdown-link"><%= link_to('Edit profile', editself_user_profiles_path ) %></li>
+        
+        <% if current_user.has_role? :admin %>
+        <li class="hidden-xs dropdown-link">
+          <%= link_to('Admin', users_path) %>
+        </li>
+        <% end %>
+        <li class="dropdown-link"><%= link_to('Logout', destroy_user_session_path, :method=>'delete') %></li>
+      </ul>    
+    </li>
+    <% else %>
+    <li>
+      <%= link_to('Sign up', new_user_registration_path)  %>
+    </li> 
+    <% end %>
+  </ul>
+
+
+<!--
+<div class="navbar pull-right">
+  <ul class="nav pull-right">
+    <% if user_signed_in? %>    
+      <li class="dropdown">
+        <%= link_to 'Menu <b class="caret"></b>'.html_safe, root_path, :id => 'setupdrop', :'data-toggle' => 'dropdown', :class => 'dropdown-toggle' %>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+          <li class="dropdown-link"><%= link_to "Upcoming Games", '/' %></li>
+          <li class="dropdown-link"><%= link_to "Search for Games", '/recurring_events/nearby' %></li>
+  
+          <li class="dropdown-link"><%= link_to('Edit account', edit_user_registration_path) %></li>
+          <li class="dropdown-link"><%= link_to('Edit profile', editself_user_profiles_path ) %></li>
+  
+          <% if current_user.has_role? :admin %>
+            <li class="hidden-sm dropdown-link">
+            <%= link_to('Admin', users_path) %>
+            </li>
+          <% end %>
+          <li class="dropdown-link"><%= link_to('Logout', destroy_user_session_path, :method=>'delete') %></li>
+        </ul>
+      </li>
+  
+    <% else %>
+      <li>
+      <%= link_to('Sign up', new_user_registration_path)  %>
+      </li> 
+  
+    <% end %>
+  </ul>
+</div>
+-->

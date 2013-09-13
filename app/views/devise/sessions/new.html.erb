@@ -1,0 +1,19 @@
+<div class="login-header">
+  <h3 style="padding-left: 5px">Sign in</h3>
+  <div class="login"> 
+    <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <div class="form-inputs">
+        <%= f.input :email, :required => false, :autofocus => true, :input_html => {:class => 'form-control' } %>
+        <%= f.input :password, :required => false, :input_html => {:class => 'form-control' }  %>
+        <%= f.label :remember_me if devise_mapping.rememberable? %><br>
+        <%= f.input_field :remember_me, :as => :boolean if devise_mapping.rememberable? %>
+      </div>
+    
+      <div class="form-actions">
+        <%= f.button :submit, "Sign in", :class => 'btn btn-success' %>
+      </div>
+    <% end %>
+    <br>
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

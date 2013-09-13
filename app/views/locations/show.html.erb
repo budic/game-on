@@ -1,0 +1,21 @@
+<h3><%= @location.name %></h3>
+
+<p>
+  <%= @location.address %>
+</p>
+
+<addressmap><%= @location.address %></addressmap>
+<br><br>
+<% if can? :update, @location %>
+<%= link_to 'Edit Location', edit_location_path(@location), :class => 'btn btn-primary', :style => "color:#ffffff" %> 
+<% end %>
+<% if !@location.recurring_events.count.zero? %>
+  <h4>Weekly Games</h4>
+  <%= render 'recurring_events' %>
+
+<% end %>
+<% if can? :update, @location %>
+  <%= link_to 'Add Weekly Game', new_recurring_event_path(location_id: @location), :class => 'btn btn-success', :style => "color:#ffffff" %>
+<% end %>
+<br><br>
+

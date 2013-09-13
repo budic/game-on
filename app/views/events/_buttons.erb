@@ -1,0 +1,35 @@
+<br>
+<div>
+  <% if !@invite || @invite.status != :yes %>
+  <%= link_to "I'm in", {:controller => "events", :action => "rsvp_yes", :method => "get", :event_id => @event.id, :remote => true,}, :class => 'btn btn-success', :type => 'button' %>
+  <% end %>
+  <% if !@invite || @invite.status != :no %>
+  <%= link_to "I'm out", {:controller => "events", :action => "rsvp_no", :method => "get", :event_id => @event.id, :remote => true}, :class => 'btn btn-danger', :type => 'button' %>
+  <% end %>
+  <% if !@invite || @invite.status != :maybe %>
+  <%= link_to "Maybe", {:controller => "events", :action => "rsvp_maybe", :method => "get", :event_id => @event.id, :remote => true}, :class => 'btn btn-warning', :type => 'button' %>
+  <% end %>
+</div>
+<br>
+<div>
+  <span id="yesimage">
+    <%= @yes.to_s %>  <span class="glyphicon glyphicon-thumbs-up" style="padding-right:15px; font-size:24px; color: #2ecc71" ></span>
+    <% if @yes > 0 %>
+      <div id='yespopup'> <%= @yesNames %> </div>
+    <% end %>
+  </span>
+  <span id="noimage">
+    <%= @no.to_s %> <span class="glyphicon glyphicon-thumbs-down" style="padding-right:15px; font-size:24px; color: #e74c3c" ></span>
+    <% if @no > 0 %>
+      <div id='nopopup'> <%= @noNames %> </div>
+    <% end %>
+  </span>
+   <span id="maybeimage">
+    <%= @maybe.to_s %>  <span class="glyphicon glyphicon-question-sign" style="font-size:24px; color: #f1c40f"></span>
+    <% if @maybe > 0 %>
+      <div id='maybepopup'> <%= @maybeNames %> </div>
+    <% end %>
+  </span>
+  
+  
+<div>

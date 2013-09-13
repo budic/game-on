@@ -1,0 +1,16 @@
+<h3><%= @event.name %></h3>
+<p>
+  <strong><%= @event.start_date.strftime("%A, %B %d") %></strong>
+</p>
+<%= link_to @event.location.name, @event.location %>
+<p>
+  <%= @event.start_date.strftime("%I:%M %p") %> - <%= @event.end_date.strftime("%I:%M %p") %>
+</p>
+<div id = "user-status">
+  <%= render 'user_status' %>
+</div>
+<div id="event-buttons" class="form-actions">
+  <%= render 'buttons' %>
+</div>
+
+

@@ -1,0 +1,29 @@
+<h1>Listing recurring_events</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Next Gen Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @recurring_events.each do |recurring_event| %>
+      <tr>
+        <td><%= recurring_event.name %></td>
+        <td><%= recurring_event.next_gen_date %></td>
+        <td><%= link_to 'Show', recurring_event %></td>
+        <td><%= link_to 'Edit', edit_recurring_event_path(recurring_event) %></td>
+        <td><%= link_to 'Destroy', recurring_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Recurring event', new_recurring_event_path %>

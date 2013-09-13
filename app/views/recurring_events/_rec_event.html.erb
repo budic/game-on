@@ -1,0 +1,36 @@
+<p>
+  <strong>
+    <%= @recurring_event.name %> - <%= @recurring_event.game_type.name %>
+  </strong>
+  
+  <span class="stars"><%= @recurring_event.level %></span>
+
+</p>
+<div>
+  <%=Date::DAYNAMES[ @recurring_event.day ] %> 
+  <% time = "" %>
+  <%if @recurring_event.start_time %>
+    <% time += @recurring_event.start_time.strftime("%l:%M %P") %>
+    <% if @recurring_event.end_time %>
+      <%time += " - " + @recurring_event.end_time.strftime("%l:%M %P") %>
+    <% end %>
+  <% end %> 
+  <%= time %> 
+</div>
+
+  <%= @recurring_event.location.name %>
+  <address>
+    <%= @recurring_event.location.address %>
+  </address>
+
+<div id="myeventbuttons">
+  <%= render 'rec_event_buttons' %>
+</div>
+<br>
+<div class='col-md-10'>
+  <addressmap>
+    <%= @recurring_event.location.address %>
+  </addressmap>
+</div>
+
+

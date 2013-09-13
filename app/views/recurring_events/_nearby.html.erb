@@ -1,0 +1,43 @@
+<%= form_tag("/recurring_events/nearby", {method: "get"}) do %>
+<%= text_field_tag(:search, params[:search],  {class: 'col-lg-10 col-md-10 col-sm-9 col-xs-9', :autofocus => true}) %>
+<%= submit_tag("Search", {class: 'btn btn-success btn-xs col-lg-2 col-md-2 col-sm-3 col-xs-3'}) %>
+<% end %>
+<br><br>
+<% if !@recurring_events.count.zero? %>
+  <% @recurring_events.each do | r | %>
+    <div class="recurring_event">
+      <%= link_to r do %>
+        <div style='position:relative'>
+          <span class='linkedspan'></span>       
+          <span>
+            <strong>
+            <%= link_to Date::DAYNAMES[ r.day ],  r.location.name  %> 
+            </strong>
+          </span> 
+          <span class='pull-right'><%= number_with_precision(r.distance, :precision => 1) %> miles away</span>
+            <% time = "" %>
+            <%if r.start_time %>
+              <% time += r.start_time.strftime("%l:%M %P") %>
+              <% if r.end_time %>
+                <%time += " - " + r.end_time.strftime("%l:%M %P") %>
+              <% end %>
+            <% end %> 
+            <div > <%= time %> </div>
+           
+          <div>
+            <%= r.location.name %>
+          </div>
+          <div>
+            <%= r.location.address %>
+          </div>
+          <span class="stars"> <%= r.level %></span> 
+        </div>
+      <br>
+      <% end %>
+    </div>
+  <% end %>
+  <% else %>
+  <p> No games found near the search address. </p>
+<p> 
+<% end %>
+

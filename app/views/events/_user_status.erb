@@ -1,0 +1,14 @@
+<div>
+  <% if @invite && @invite.status == :yes %>
+    <span class="glyphicon glyphicon-thumbs-up" style="color: #2ecc71"></span> <%= 'You are in' %>
+  <% end %>
+  <% if @invite && @invite.status == :no %>
+    <span class="glyphicon glyphicon-thumbs-down" style="color: #e74c3c"></span> <%= 'You are out' %>
+  <% end %>
+  <% if @invite && @invite.status == :maybe %>
+    <span class="glyphicon glyphicon-question-sign" style="color: #f1c40f"></span> <%= 'You are a maybe' %>
+  <% end %>
+  
+</div>
+
+

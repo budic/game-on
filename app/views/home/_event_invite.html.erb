@@ -1,0 +1,29 @@
+
+<% if !@event_invites.count.zero? %>
+  
+    <% @event_invites.each do |r| %>  
+    <%= link_to r.event do %>
+      <div style='position:relative' >
+        <span class='linkedspan'></span>
+
+        <div class="calendar">
+          <% if r.event.start_date.strftime("%d") == Time.now.strftime("%d") %>
+            <div class="header" style="background: #e74c3c"><%= r.event.start_date.strftime("%b")  %></div>
+          <% else %>
+            <div class="header"><%= r.event.start_date.strftime("%b")  %></div>
+          <% end %>
+           <div class="num-day"><%= r.event.start_date.strftime("%d")  %></div>
+        </div>
+        
+        <div>
+          <b><%= r.event.name %></b>
+          <br>
+            <%= link_to r.event.location.name, r.event.location %>
+          <br>
+          <%= r.event.start_date.strftime("%I:%M %p") + " - " + r.event.end_date.strftime("%I:%M %p")   %>
+        </div>
+      </div>
+      <% end %>
+      <br><br>
+    <% end %> 
+<% end %>

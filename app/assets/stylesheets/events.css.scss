@@ -1,0 +1,50 @@
+// Place all the styles related to the Events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#yespopup {
+    height: 75px;
+    width: 200px;
+    text-align: center;
+    vertical-align:middle;
+    background-color: white;
+    border-color: #2ecc71;
+    border-style: solid;
+    border-width: 2px;
+    color: black;
+    display: none;
+    padding-top: 8px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    position: absolute;
+}
+
+#nopopup {
+    height: 75px;
+    width: 200px;
+    text-align: center;
+    vertical-align:middle;
+    background-color: white;
+    border-color: #e74c3c;
+    border-style: solid;
+    border-width: 2px;
+    color: black;
+    display: none;
+    padding-top: 8px;
+    position: absolute;
+}
+
+#maybepopup {
+    height: 75px;
+    width: 200px;
+    text-align: center;
+    vertical-align:middle;
+    background-color: white;
+    border-color: #f1c40f;
+    border-style: solid;
+    border-width: 2px;
+    color: black;
+    display: none;
+    padding-top: 8px;
+    position: absolute;
+}

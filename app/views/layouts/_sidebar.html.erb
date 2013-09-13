@@ -1,0 +1,21 @@
+<ul class="nav nav-list nav-stacked">
+  <% if user_signed_in? %>
+  <li class="nav-header">Welcome</li>
+  <li class="divider"> </li>
+  <li>
+    <%= link_to('Upcoming Games', '/') %>
+  </li>
+  <li>
+    <%= link_to('Find Weekly Games', '/recurring_events/nearby') %>
+  </li>
+  <li class="divider"> </li>
+  <li class="nav-header hidden">Create Games</li>
+  <li class="hidden">
+    <%= link_to('New One Time Game', '/recurring_events/nearby') %>
+  </li>
+  
+  <li class="hidden">
+    <%= link_to('New Weekly Game', '/recurring_events/new') %>
+  </li>
+  <% end %>
+</ul>

@@ -1,0 +1,29 @@
+<h1>Listing rec_event_follows</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Recurring event</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rec_event_follows.each do |rec_event_follow| %>
+      <tr>
+        <td><%= rec_event_follow.recurring_event_id %></td>
+        <td><%= rec_event_follow.user_id %></td>
+        <td><%= link_to 'Show', rec_event_follow %></td>
+        <td><%= link_to 'Edit', edit_rec_event_follow_path(rec_event_follow) %></td>
+        <td><%= link_to 'Destroy', rec_event_follow, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Rec event follow', new_rec_event_follow_path %>

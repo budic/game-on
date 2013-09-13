@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>   
+      This is a reminder from Leftcoastal Games that you have an upcoming game
+   
+      <%= @event.name %><br>
+      <%= @event.start_date.strftime("%A, %B %d") %><br>
+      <%=  @event.location.name %><br>
+      <%= @event.start_date.strftime("%I:%M %p") %> - <%= @event.end_date.strftime("%I:%M %p") %>   <br> 
+      To login to the site, just follow this link: <%= @url %>. 
+
+  </body>
+</html>

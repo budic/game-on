@@ -1,0 +1,102 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+*/
+
+@import "twitter/bootstrap";
+
+span.stars, span.stars span {
+    display: block;
+    background: url('stars.png') 0 -16px repeat-x;
+    width: 80px;
+    height: 16px;
+}
+
+span.stars span {
+    background-position: 0 0;
+}
+
+.calendar {
+   margin: 2px auto;
+   width: 64px;
+   height: 64px;
+   -moz-border-radius: 4px;
+   -webkit-border-radius: 4px;
+   border-radius: 4px;
+   float: left;
+   display: inline;
+   background: #ecf0f1;
+   margin-right: 10px;
+}
+
+.header {
+   height: 20px;
+   background: #e74c3c;
+   background: #f1c40f;
+   -webkit-border-top-right-radius: 4px;
+   -moz-border-radius-topright: 4px;
+   border-top-right-radius: 4px;
+   -webkit-border-top-left-radius: 4px;
+   -moz-border-radius-topleft: 4px;
+   border-top-left-radius: 4px;
+   width: 64px;
+   text-align: center;
+   font-size: 12px;
+   color: #FFF;
+   line-height: 20px
+}
+ 
+.num-day {
+   height: 44px;
+   font-size: 36px;
+   color: #333;
+   text-align: center;
+   padding-top: 8px;
+}
+
+.linkedspan { 
+  position:absolute; 
+  width:100%;
+  height:100%;
+  top:0;
+  left: 0;
+
+  /* edit: added z-index */
+  z-index: 1;
+
+  /* edit: fixes overlap error in IE7/8, 
+     make sure you have an empty gif */
+  #background-image: url('empty.gif');
+}   
+
+.login-header {
+   /* background: #84c1ae;  background: #84e6ae;*/
+   padding-top: 5px;
+   margin: 5px;
+   -webkit-border-radius: 8px;
+   border-radius: 8px;
+   color: #000;
+}
+  
+.login {
+   -moz-border-radius: 8px;
+   
+   padding: 15px;
+   color: #000;
+  -webkit-border-bottom-right-radius: 8px;
+   -moz-border-radius-bottomright: 8px;
+   border-bottom-right-radius: 8px;
+   -webkit-border-bottom-left-radius: 8px;
+   -moz-border-radius-bottomleft: 8px;
+   border-bottom-left-radius: 8px;
+}
+

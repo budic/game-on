@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>You have an upcoming game!</h1>
+    <p>
+      This is a reminder from Leftcoastal Games that you have an upcoming game
+    </p>
+      <h3><%= @event.name %></h3>
+      <p>
+        <strong><%= @event.start_date.strftime("%A, %B %d") %></strong>
+      </p>
+      <%=  @event.location.name %>
+      <p>
+        <%= @event.start_date.strftime("%I:%M %p") %> - <%= @event.end_date.strftime("%I:%M %p") %>
+      </p>
+    
+    <p>
+      To login to the site, just follow this link: <%= @url %>.
+    </p>
+    <p>Have Fun</p>
+  </body>
+</html>

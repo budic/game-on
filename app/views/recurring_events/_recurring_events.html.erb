@@ -1,0 +1,50 @@
+<%= hidden_field_tag :search, params[:search] %>
+<% if !@recurring_events.count.zero? %>
+  <div class="rounded-corner">
+    <table >
+      <thead>
+        <tr>
+          <th>Game</th>
+          <th>Location</th>
+          <th>Day</th>
+          <th>Game Time</th>
+          <th>Distance</th>
+          <th></th>
+        </tr>
+      </thead>
+    
+      <tbody>
+     
+      <% @recurring_events.each do |r| %>  
+          <tr>
+            <td><%= r.game_type.name %></td>
+            <td><%= link_to r.location.name, r.location %></td>
+            <td> <% if r.day %>
+                <%= Date::DAYNAMES[r.day] %>
+                 <% end %>
+            <td><% time = "" %>
+                <%if r.start_time %>
+                  <% time += r.start_time.strftime("%I:%M %p") %>
+                  <% if r.end_time %>
+                    <%time += "-" + r.end_time.strftime("%I:%M %p") %>
+                  <% end %>
+                <% end %> 
+                <%= time %></td>
+            <td><%= number_with_precision(r.distance, :precision => 1) %> miles</td>
+            <td></td>
+          </tr>
+        <% end %>
+      
+      </tbody>
+    </table>
+  </div>
+    <% else %>
+    <p> No games found in your area. </p>
+  <% end %>
+    <br>
+  
+    <p> Can't find what you're looking for?  
+      <div class='linkbuttonholder'>
+      <%= link_to 'Add a new game or location', nearby_locations_path, :class => 'btn btn-primary' %>
+      </div>
+    <p>

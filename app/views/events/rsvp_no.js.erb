@@ -1,0 +1,25 @@
+$('#event-buttons').html("<%= escape_javascript render :partial => 'buttons' %>");
+$('#user-status').html("<%= escape_javascript render :partial => 'user_status' %>");
+$(function() {
+    $(function() {
+    return $('#yesimage').hover(function() {
+      return $('#yespopup').fadeIn("fast");
+    }, function() {
+      return $('#yespopup').fadeOut("fast");
+    });
+  });
+    $(function() {
+    return $('#noimage').hover(function() {
+      return $('#nopopup').fadeIn("fast");
+    }, function() {
+      return $('#nopopup').fadeOut("fast");
+    });
+  });
+  $(function() {
+    return $('#maybeimage').hover(function() {
+      return $('#maybepopup').fadeIn("fast");
+    }, function() {
+      return $('#maybepopup').fadeOut("fast");
+    });
+  });
+}).call(this);

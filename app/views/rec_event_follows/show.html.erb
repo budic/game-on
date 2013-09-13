@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Recurring event:</strong>
+  <%= @rec_event_follow.recurring_event_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @rec_event_follow.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_rec_event_follow_path(@rec_event_follow) %> |
+<%= link_to 'Back', rec_event_follows_path %>
