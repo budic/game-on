@@ -1,4 +1,4 @@
-namespace :scheduler do
+
   desc "Remove old"
   task removeold: :environment do
     # Get all events more than 1 day old and delete them
@@ -84,4 +84,4 @@ namespace :scheduler do
     end
   end
   
-end
+
