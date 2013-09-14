@@ -40,6 +40,8 @@ gem 'geocoder'
 gem 'simple_enum'
 gem "combined_time_select", "~> 0.0.1"
 
+gem 'unicorn'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
