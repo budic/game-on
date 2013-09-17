@@ -28,8 +28,8 @@
         doffset = 7 + (r.day - time.wday)
       end
       
-      stime = Time.new( time.year, time.month, time.day, r.start_time.hour, r.start_time.min ) + doffset.days
-      etime = Time.new( time.year, time.month, time.day, r.end_time.hour, r.end_time.min ) + doffset.days
+      stime = Time.zone.local( time.year, time.month, time.day, r.start_time.hour, r.start_time.min ) + doffset.days
+      etime = Time.zone.local( time.year, time.month, time.day, r.end_time.hour, r.end_time.min ) + doffset.days
        
       ev = Event.find_or_create_by_recurring_event_id_and_start_date( r.id , stime )
       ev.name = r.name
