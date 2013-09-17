@@ -6,6 +6,17 @@
     puts 'Old records removed'
   end
 
+  desc "Reset all"
+  task resetall: :environment do
+    # Get all events more than 1 day old and delete them
+    Event.destroy_all
+    RecurringEvent.all.each do |r|
+      r.next_gen_date = nil
+      r.save()
+    end
+    puts 'Old records removed'
+  end
+
   desc "Add new"
   task addnew: :environment do
     time = Time.new
