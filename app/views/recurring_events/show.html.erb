@@ -4,6 +4,8 @@
 </div>
 <% if can? :destroy, @recurring_event %>
 <%= "Current Time: " +Time.now.to_s %>
-   <p>
+   <% if @recurring_event.next_gen_date %>
+   <br>
      Next Gen: <%= @recurring_event.next_gen_date.localtime %>
+   <% end %>
 <% end %>
