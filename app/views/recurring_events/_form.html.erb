@@ -2,18 +2,18 @@
   <%= f.error_notification %>
 
     <%= f.input :name, :input_html => {:class => 'form-control' }  %>
-    <%= f.association :game_type, :input_html => {:class => 'form-control' } %>
+    <%= f.association :game_type, :required => true, :input_html => {:class => 'form-control' } %>
     <%= f.input :level, :input_html => {:class => 'form-control' }  %>
     <div class="control-group">
       <label class="control-label" for=:day>Day of week</label>
-      <div class="controls input select required form-control">
-        <%= f.select :day, Date::DAYNAMES.zip((0..6).to_a), :input_html => { :class => 'form-control' }  %>
+      <div class=" required">
+        <%= f.select :day, Date::DAYNAMES.zip((0..6).to_a), :required => true, :input_html => { :class => 'form-control' }  %>
       </div>
     </div>
     <div class="control-group">
       <label class="control-label" for=:start_time>Start Time</label>
-      <div class="controls form-control">
-        <%= f.time_select :start_time,
+      <div class="controls">
+        <%= f.time_select :start_time, :required => true,
           :combined => true,
           :default => Time.now.change(:hour => 11, :min => 30),
           :minute_interval => 15,
@@ -27,8 +27,8 @@
     </div>
     <div class="control-group">
       <label class="control-label" for=:end_time>End Time</label>
-      <div class="controls form-control">
-        <%= f.time_select :end_time,
+      <div class="controls">
+        <%= f.time_select :end_time, :required => true,
           :combined => true,
           :default => Time.now.change(:hour => 11, :min => 30),
           :minute_interval => 15,

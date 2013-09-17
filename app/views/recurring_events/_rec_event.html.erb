@@ -28,7 +28,7 @@
   <%= render 'rec_event_buttons' %>
 </div>
 <br>
-<div>
+
 
   <div class="collapse-group">
    <div class="collapse">
@@ -37,7 +37,10 @@
    <a id="mapbutton" class="btn btn-info" style="color:#fff" href="#">
      <span class="glyphicon glyphicon-map-marker"></span> View map &raquo;</a>
    </div>
-
-</div>
+<br>
+<div>
+    <%= link_to "Edit", {:controller => "recurring_events", :action => "edit", :method => "get", 
+        :recurring_event_id => @recurring_event.id}, :class => 'btn btn-primary', :type => 'button' %>
+</div> 
 
 

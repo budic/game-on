@@ -12,7 +12,7 @@ class Location < ActiveRecord::Base
   end
   before_validation :geocode, :if => :address_changed?
   
-  validates_presence_of :name
+  validates_presence_of :name, :address
   validates_uniqueness_of :address, :case_sensitive => false
   
   

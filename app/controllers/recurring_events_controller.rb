@@ -27,7 +27,7 @@ class RecurringEventsController < ApplicationController
 
   # GET /recurring_events/1/edit
   def edit
-    @location = Location.find( @recurring_event.location_id )
+    #@location = Location.find( @recurring_event.location_id )
   end
 
   # POST /recurring_events

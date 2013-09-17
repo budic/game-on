@@ -9,11 +9,12 @@ class Ability
     can :show, User,  :id => user.id
     can :show, EventInvite,  :user_id => user.id
     can :destroy, EventInvite, :user_id => user.id
-      can :show, UserProfile, :user_id => user.id
-      can :edit, UserProfile, :user_id => user.id
-      can :editself, UserProfile, :user_id => user.id
     
+    can :show, UserProfile, :user_id => user.id
+    can :edit, UserProfile, :user_id => user.id
+    can :editself, UserProfile, :user_id => user.id    
     can :update, UserProfile, :user_id => user.id
+      
     end  
   end
   
