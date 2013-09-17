@@ -4,7 +4,7 @@
 </p>
 <%= link_to @event.location.name, @event.location %>
 <p>
-  <%= @event.start_date.strftime("%I:%M %p") %> - <%= @event.end_date.strftime("%I:%M %p") %>
+  <%= @event.start_date.in_time_zone.strftime("%I:%M %p") %> - <%= @event.end_date.in_time_zone.strftime("%I:%M %p") %>
 </p>
 <div id = "user-status">
   <%= render 'user_status' %>
