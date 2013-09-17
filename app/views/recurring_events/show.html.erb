@@ -3,7 +3,7 @@
   <%= render 'rec_event' %>  
 </div>
 <% if can? :destroy, @recurring_event %>
-<%= "Current Time: " +Time.zone.to_s %>
+<%= "Current Time: " +Time.now.to_s %>
    <p>
      Next Gen: <%= @recurring_event.next_gen_date.localtime %>
 <% end %>
