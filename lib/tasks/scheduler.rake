@@ -19,7 +19,7 @@
 
   desc "Add new"
   task addnew: :environment do
-    time = Time.new
+    time = Time.zone.now
     RecurringEvent.where('next_gen_date < ? OR next_gen_date IS NULL', time).find_each do |r|
     #RecurringEvent.all.each do |r| 
 
