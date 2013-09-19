@@ -27,6 +27,8 @@ class RecurringEventsController < ApplicationController
 
   # GET /recurring_events/1/edit
   def edit
+    @recurring_event.start_time = @recurring_event.start_time.in_time_zone
+    @recurring_event.end_time = @recurring_event.end_time.in_time_zone
     #@location = Location.find( @recurring_event.location_id )
   end
 
@@ -73,6 +75,7 @@ class RecurringEventsController < ApplicationController
   def update
     params[:recurring_event].parse_time_select! :start_time
     params[:recurring_event].parse_time_select! :end_time
+
     respond_to do |format|
       if @recurring_event.update(recurring_event_params)
         format.html { redirect_to @recurring_event, notice: 'Recurring event was successfully updated.' }
@@ -166,4 +169,5 @@ class RecurringEventsController < ApplicationController
     def recurring_event_params
       params.require(:recurring_event).permit(:name, :location_id, :game_type_id, :start_time, :end_time, :day, :level)
     end
+  
 end

@@ -15,7 +15,7 @@
       <div class="controls">
         <%= f.time_select :start_time, :required => true,
           :combined => true,
-          :default => Time.now.change(:hour => 11, :min => 30),
+          :default => Time.zone.now.change(:hour => 11, :min => 30),
           :minute_interval => 15,
           :time_separator => "",
           :start_hour => 0,
@@ -30,7 +30,7 @@
       <div class="controls">
         <%= f.time_select :end_time, :required => true,
           :combined => true,
-          :default => Time.now.change(:hour => 11, :min => 30),
+          :default => Time.zone.now.change(:hour => 11, :min => 30),
           :minute_interval => 15,
           :time_separator => "",
           :start_hour => 0,

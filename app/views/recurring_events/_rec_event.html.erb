@@ -10,9 +10,15 @@
   <%=Date::DAYNAMES[ @recurring_event.day ] %> 
   <% time = "" %>
   <%if @recurring_event.start_time %>
-    <% time += @recurring_event.start_time.strftime("%l:%M %P") %>
+    <%= @recurring_event.start_time %><br>
+  <%= @recurring_event.start_time.in_time_zone %><br>
+  <%= @recurring_event.start_time.localtime %>
+  <br>
+    <%= Time.zone %>
+  <br>
+    <% time += @recurring_event.start_time.in_time_zone.strftime("%l:%M %P") %>
     <% if @recurring_event.end_time %>
-      <%time += " - " + @recurring_event.end_time.strftime("%l:%M %P") %>
+      <%time += " - " + @recurring_event.end_time.in_time_zone.strftime("%l:%M %P") %>
     <% end %>
   <% end %> 
   <%= time %> 

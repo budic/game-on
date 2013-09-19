@@ -6,6 +6,6 @@
 <%= "Current Time: " +Time.now.to_s %>
    <% if @recurring_event.next_gen_date %>
    <br>
-     Next Gen: <%= @recurring_event.next_gen_date.localtime %>
+     Next Gen: <%= @recurring_event.next_gen_date %>
    <% end %>
 <% end %>

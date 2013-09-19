@@ -14,10 +14,10 @@
 </div>
 
 <% if can? :destroy, @event %>
-<%= "Current Time: " +Time.now.to_s %>
+<%= "Current Time: " +Time.zone.now.to_s %>
    <% if @event.next_reminder_time %>
    <br>
-     Next Reminder: <%= @event.next_reminder_time %>
+     Next Reminder: <%= @event.next_reminder_time.to_s  %>
    <% end %>
     <% if @event.next_reminder_type %>
    <br>
