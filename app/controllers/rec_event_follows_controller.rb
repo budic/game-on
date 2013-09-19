@@ -1,6 +1,7 @@
 class RecEventFollowsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_rec_event_follow, only: [:show, :edit, :update, :destroy]
+  helper_method :get_time_string
 
   # GET /rec_event_follows
   # GET /rec_event_follows.json
@@ -77,4 +78,21 @@ class RecEventFollowsController < ApplicationController
     def rec_event_follow_params
       params.require(:rec_event_follow).permit(:recurring_event_id, :user_id)
     end
+  
+  def get_time_string( start_time, end_time )
+    if start_time && end_time
+      time = ""
+      sday = Date.today
+      stime = Time.new( sday.year, sday.month, sday.day, start_time.hour, start_time.min)
+      etime = Time.new( sday.year, sday.month, sday.day, end_time.hour,end_time.min)
+      if start_time 
+        time += stime.in_time_zone.strftime("%l:%M %P")
+        if end_time
+          time += " - " + etime.in_time_zone.strftime("%l:%M %P") 
+        end 
+      end
+      return time 
+    end  
+  end
+  
 end

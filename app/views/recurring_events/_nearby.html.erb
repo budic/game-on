@@ -22,7 +22,10 @@
                 <%time += " - " + r.end_time.strftime("%l:%M %P") %>
               <% end %>
             <% end %> 
-            <div > <%= time %> </div>
+            
+            <div >
+              <%=  get_time_string(r) %> 
+           </div>
            
           <div>
             <%= r.location.name %>
