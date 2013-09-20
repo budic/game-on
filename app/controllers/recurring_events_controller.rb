@@ -24,6 +24,10 @@ class RecurringEventsController < ApplicationController
     if params[:location_id]
       @recurring_event.location_id = params[:location_id]
       @location = Location.find( params[:location_id] )
+    else
+      if @recurring_event.location_id
+        @location = Location.find( @recurring_event.location_id )
+      end
     end
   end
 
@@ -42,11 +46,13 @@ class RecurringEventsController < ApplicationController
   def create
     params[:recurring_event].parse_time_select! :start_time
     params[:recurring_event].parse_time_select! :end_time
+   
     @recurring_event = RecurringEvent.new(recurring_event_params)
+     @location = Location.find( @recurring_event.location_id )
     respond_to do |format|
       if @recurring_event.save
         r = @recurring_event
-        time = Time.new
+        time = Time.zone.now
         doffset =  r.day - time.wday
         if doffset < 0
           doffset = 7 + (r.day - time.wday)
