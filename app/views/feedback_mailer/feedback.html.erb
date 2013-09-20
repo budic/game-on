@@ -1,11 +1,10 @@
-Dear site administrator,
+<b>Feedback from Game-On! user</b>
 
-You're lucky today, you've got feedback from your users:
-
-Subject: <%=h @feedback.subject %>
-User's email: <%=h @feedback.email %>
-Sent at: <%= Time.now %>
-From Page: <%= @feedback.page %>
-
-Comment: 
+Subject: <%=h @feedback.subject %><br>
+User's email: <%=h @feedback.email %><br>
+Sent at: <%= Time.now %><br>
+From Page: <%= @feedback.page %><br>
+<br>
+<b>Comment:</b>
+<br>
 <%=h @feedback.comment %>

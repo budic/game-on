@@ -13,17 +13,7 @@
   <%= render 'buttons' %>
 </div>
 
-<% if can? :destroy, @event %>
-<%= "Current Time: " +Time.zone.now.to_s %>
-   <% if @event.next_reminder_time %>
-   <br>
-     Next Reminder: <%= @event.next_reminder_time.to_s  %>
-   <% end %>
-    <% if @event.next_reminder_type %>
-   <br>
-    Type: <%= @event.next_reminder_type %>
-   <% end %>
-<% end %>
+
 
 
 

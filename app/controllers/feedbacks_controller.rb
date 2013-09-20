@@ -3,7 +3,9 @@ class FeedbacksController < ApplicationController
 
   def new
     @feedback = Feedback.new(page: request.referer)
-    @feedback.email = current_user.email
+    if current_user
+      @feedback.email = current_user.email
+    end
   end
 
   def create
