@@ -4,6 +4,6 @@ class FeedbackMailer < ActionMailer::Base
   def feedback(feedback)
     @feedback = feedback
     mail(:to => 'leftcoastalgames@gmail.com', 
-         :subject => '[Feedback for YourSite] #{feedback.subject}')
+      :subject => 'Game-on! Feedback: + feedback.subject})
   end
 end
