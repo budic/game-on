@@ -1,5 +1,8 @@
 GameOn::Application.routes.draw do
 
+  match 'feedbacks' => 'feedbacks#create', :as => :feedback, via: :post
+  match 'feedbacks/new' => 'feedbacks#new', :as => :new_feedback, via: :get
+  
   resources :rec_event_follows do
     collection do
       get 'mygames'

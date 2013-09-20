@@ -2,7 +2,7 @@ namespace :reminder do
   desc "Send Reminder Email"
   task send_reminder_email: :environment do
     #Get all the events taht
-    Event.where( 'next_reminder_time <= ? AND next_reminder_type_cd = 0' , Time.new + 5.minutes ).find_each do |e|
+    Event.where( 'next_reminder_time <= ? AND next_reminder_type_cd = 0' , Time.zone.now + 5.minutes ).find_each do |e|
       @event = e
       tolist = Array.new
       EventInvite.where( 'event_id = ?' , @event.id ).find_each do |invite|
@@ -19,7 +19,7 @@ namespace :reminder do
 
   desc "Send Reminder SMS"
   task send_sms_reminder: :environment do
-    Event.where( 'next_reminder_time <= ? AND next_reminder_type_cd = 1', Time.new + 5.minutes ).find_each do |e|
+    Event.where( 'next_reminder_time <= ? AND next_reminder_type_cd = 1', Time.zone.now + 5.minutes ).find_each do |e|
       @event = e
       tolist = Array.new
       EventInvite.where( 'event_id = ?' , @event.id ).find_each do |invite|

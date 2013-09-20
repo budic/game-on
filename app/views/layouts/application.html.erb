@@ -8,8 +8,10 @@
     <%= javascript_include_tag "application", "data-turbolinks-track" => false %>
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
+    
   </head>
   <body>
+    <%= feedback_tab(:position => 'right') %>
     <nav class="navbar navbar-fixed-top" role="navigation">
       <%= render 'layouts/navigation' %>        
     </nav>

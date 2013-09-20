@@ -28,5 +28,7 @@ module GameOn
     config.filter_parameters += [:password, :password_confirmation]
     
     config.action_mailer.default_url_options = { :host => 'http://intense-everglades-3973.herokuapp.com/' }
+    
+    config.autoload_paths += Dir["#{config.root}/lib/"]
   end
 end
