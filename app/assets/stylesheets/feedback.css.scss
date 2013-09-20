@@ -56,14 +56,17 @@ a {
     height: 22px;
     width: 66px;
     background-image: image-url('feedback/closelabel.gif');
-    _background-image: image-url('feedback/closelabel.gif'); } }
+    _background-image: image-url('feedback/closelabel.gif');
+    filter: alpha(opacity = 50);} }
 
 div {
   &#feedback_modal_window {
     width: 300px;
     margin: 0 auto;
     position: relative;
-    background-color: #FFFFFF; }
+    background-color: #FFFFFF;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
   &#feedback_modal_content, &#feedback_loading {
     padding: 12px; } }
 
@@ -83,7 +86,8 @@ div {
 
 .feedback_overlayBG {
   background-color: #000;
-  z-index: 100000; }
+  z-index: 100000;
+  filter: alpha(opacity = 50);}
 
 * html #feedback_overlay {
   /* ie6 hack */

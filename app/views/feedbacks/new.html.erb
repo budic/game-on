@@ -14,11 +14,12 @@
     <%= f.label 'subject' %>
     <%= f.select 'subject', ['Problem', 'Suggestion', 'Question', 'Other'] %>
   </p>
-  <% if !@feedback.email %>
-  <p>
+  
+  <div class='hidden'>
     <%= f.label  'email' %>
     <%= f.text_field 'email' %>
-  <% end %>
+  </div>
+  
   <p>
     <%= f.label 'comment' %><br />
     <%= f.text_area 'comment', :rows => 10, :cols => 30 %>
