@@ -15,18 +15,9 @@
             </strong>
           </span> 
           <span class='pull-right'><%= number_with_precision(r.distance, :precision => 1) %> miles away</span>
-            <% time = "" %>
-            <%if r.start_time %>
-              <% time += r.start_time.strftime("%l:%M %P") %>
-              <% if r.end_time %>
-                <%time += " - " + r.end_time.strftime("%l:%M %P") %>
-              <% end %>
-            <% end %> 
-            
-            <div >
-              <%=  get_time_string(r) %> 
-           </div>
-           
+          <div >
+            <%=  get_timestring( r.start_time, r.end_time ) %>  
+          </div>         
           <div>
             <%= r.location.name %>
           </div>

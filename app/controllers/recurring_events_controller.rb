@@ -39,6 +39,7 @@ class RecurringEventsController < ApplicationController
     @recurring_event.start_time = stime.in_time_zone
     @recurring_event.end_time = etime.in_time_zone
     #@location = Location.find( @recurring_event.location_id )
+    @levels = [ 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5 ]
   end
 
   # POST /recurring_events
@@ -174,23 +175,7 @@ class RecurringEventsController < ApplicationController
     def get_home_address
       profile = UserProfile.find_or_create_by_user_id( current_user.id)
       return profile.home_address
-    end
-  
-    def get_time_string( r )
-        start_time = r.start_time
-        end_time = r.end_time
-        time = ""
-        sday = Date.today
-        stime = Time.new( sday.year, sday.month, sday.day, start_time.hour, start_time.min)
-        etime = Time.new( sday.year, sday.month, sday.day, end_time.hour,end_time.min)
-        if start_time 
-          time += stime.in_time_zone.strftime("%l:%M %P")
-          if end_time
-            time += " - " + etime.in_time_zone.strftime("%l:%M %P") 
-          end 
-        end
-        return time 
-    end      
+    end  
   
     # Never trust parameters from the scary internet, only allow the white list through.
     def recurring_event_params

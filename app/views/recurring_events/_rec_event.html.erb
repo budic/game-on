@@ -4,11 +4,11 @@
   </strong>
   
   <span class="stars"><%= @recurring_event.level %></span>
-
+  <%= link_to "(click for level explanation)", @recurring_event.game_type %>
 </p>
 <div>
   <%=Date::DAYNAMES[ @recurring_event.day ] %> 
-  <%=  get_time_string( @recurring_event ) %>
+  <%= get_timestring( @recurring_event.start_time, @recurring_event.end_time ) %>
 </div>
 
   <%= @recurring_event.location.name %>

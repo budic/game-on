@@ -11,7 +11,7 @@ class RecEventFollowsController < ApplicationController
 
   def mygames
     #@rec_event_follows = RecEventFollow.all
-    @rec_event_follows = RecEventFollow.includes(:recurring_event).where("user_id = ?", current_user.id).references(:recurring_event)
+    @rec_event_follows = RecEventFollow.includes(:recurring_event).where("user_id = ?", current_user.id).references(:recurring_event).order('recurring_events.day')
   end
   
   # GET /rec_event_follows/1
@@ -78,21 +78,5 @@ class RecEventFollowsController < ApplicationController
     def rec_event_follow_params
       params.require(:rec_event_follow).permit(:recurring_event_id, :user_id)
     end
-  
-  def get_time_string( start_time, end_time )
-    if start_time && end_time
-      time = ""
-      sday = Date.today
-      stime = Time.new( sday.year, sday.month, sday.day, start_time.hour, start_time.min)
-      etime = Time.new( sday.year, sday.month, sday.day, end_time.hour,end_time.min)
-      if start_time 
-        time += stime.in_time_zone.strftime("%l:%M %P")
-        if end_time
-          time += " - " + etime.in_time_zone.strftime("%l:%M %P") 
-        end 
-      end
-      return time 
-    end  
-  end
   
 end

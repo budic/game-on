@@ -68,7 +68,7 @@ div {
     background-color: rgba(255, 255, 255, 0.8);
   }
   &#feedback_modal_content, &#feedback_loading {
-    padding: 12px; } }
+    padding: 12px;} }
 
 #feedback_overlay {
   position: fixed;
@@ -77,9 +77,9 @@ div {
   height: 100%;
   width: 100%;
   background-color: #000;
-  opacity: 0.5;
-  -moz-opacity: 0.5;
-  filter: alpha(opacity = 50); }
+  opacity: 0.8;
+  -moz-opacity: 0.8;
+  filter: alpha(opacity = 80); }
 
 .feedback_hide {
   z-index: -100; }

@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #yespopup {
-    height: 75px;
+    height: 90px;
     width: 90%;
     text-align: left;
     vertical-align:middle;
@@ -26,9 +26,9 @@
 }
 
 #nopopup {
-    height: 75px;
-    width: 200px;
-    text-align: center;
+    height: 90px;
+    width: 90%;
+    text-align: left;
     vertical-align:middle;
     background-color: white;
     border-color: #e74c3c;
@@ -40,10 +40,16 @@
     position: absolute;
 }
 
+.nonames {
+    margin-left: 6px;
+    margin-right: 6px;
+    padding-top: 1px;
+}
+
 #maybepopup {
-    height: 75px;
-    width: 200px;
-    text-align: center;
+    height: 90px;
+    width: 90%;
+    text-align: left;
     vertical-align:middle;
     background-color: white;
     border-color: #f1c40f;
@@ -53,4 +59,10 @@
     display: none;
     padding-top: 8px;
     position: absolute;
+}
+
+.maybenames {
+    margin-left: 6px;
+    margin-right: 6px;
+    padding-top: 1px;
 }

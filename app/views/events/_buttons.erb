@@ -15,19 +15,19 @@
   <span id="yesimage">
     <%= @yes.to_s %>  <span class="glyphicon glyphicon-thumbs-up" style="padding-right:15px; font-size:24px; color: #2ecc71" ></span>
     <% if @yes > 0 %>
-    <div id='yespopup'> <div class='yesnames'> <%= @yesNames %> </div> </div>
+    <div id='yespopup'><div class='yesnames'> <%= @yesNames %> </div></div>
     <% end %>
   </span>
   <span id="noimage">
     <%= @no.to_s %> <span class="glyphicon glyphicon-thumbs-down" style="padding-right:15px; font-size:24px; color: #e74c3c" ></span>
     <% if @no > 0 %>
-      <div id='nopopup'> <%= @noNames %> </div>
+      <div id='nopopup'><div class='nonames'> <%= @noNames %> </div></div>
     <% end %>
   </span>
    <span id="maybeimage">
     <%= @maybe.to_s %>  <span class="glyphicon glyphicon-question-sign" style="font-size:24px; color: #f1c40f"></span>
     <% if @maybe > 0 %>
-      <div id='maybepopup'> <%= @maybeNames %> </div>
+     <div id='maybepopup'><div class='maybenames'> <%= @maybeNames %> </div></div>
     <% end %>
   </span>
   

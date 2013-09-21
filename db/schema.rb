@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130912002755) do
+ActiveRecord::Schema.define(version: 20130921040629) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "event_invites", force: true do |t|
     t.integer  "status_cd"
@@ -21,8 +24,8 @@ ActiveRecord::Schema.define(version: 20130912002755) do
     t.integer  "event_id"
   end
 
-  add_index "event_invites", ["event_id"], name: "index_event_invites_on_event_id"
-  add_index "event_invites", ["user_id"], name: "index_event_invites_on_user_id"
+  add_index "event_invites", ["event_id"], name: "index_event_invites_on_event_id", using: :btree
+  add_index "event_invites", ["user_id"], name: "index_event_invites_on_user_id", using: :btree
 
   create_table "events", force: true do |t|
     t.string   "name"
@@ -42,15 +45,20 @@ ActiveRecord::Schema.define(version: 20130912002755) do
     t.boolean  "private"
   end
 
-  add_index "events", ["event_invite_id"], name: "index_events_on_event_invite_id"
-  add_index "events", ["game_type_id"], name: "index_events_on_game_type_id"
-  add_index "events", ["location_id"], name: "index_events_on_location_id"
-  add_index "events", ["recurring_event_id"], name: "index_events_on_recurring_event_id"
+  add_index "events", ["event_invite_id"], name: "index_events_on_event_invite_id", using: :btree
+  add_index "events", ["game_type_id"], name: "index_events_on_game_type_id", using: :btree
+  add_index "events", ["location_id"], name: "index_events_on_location_id", using: :btree
+  add_index "events", ["recurring_event_id"], name: "index_events_on_recurring_event_id", using: :btree
 
   create_table "game_types", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.string   "level1"
+    t.string   "level2"
+    t.string   "level3"
+    t.string   "level4"
+    t.string   "level5"
   end
 
   create_table "locations", force: true do |t|
@@ -72,8 +80,8 @@ ActiveRecord::Schema.define(version: 20130912002755) do
     t.integer  "recurring_event_id"
   end
 
-  add_index "rec_event_follows", ["recurring_event_id"], name: "index_rec_event_follows_on_recurring_event_id"
-  add_index "rec_event_follows", ["user_id"], name: "index_rec_event_follows_on_user_id"
+  add_index "rec_event_follows", ["recurring_event_id"], name: "index_rec_event_follows_on_recurring_event_id", using: :btree
+  add_index "rec_event_follows", ["user_id"], name: "index_rec_event_follows_on_user_id", using: :btree
 
   create_table "recurring_events", force: true do |t|
     t.string   "name"
@@ -88,8 +96,8 @@ ActiveRecord::Schema.define(version: 20130912002755) do
     t.datetime "next_gen_date"
   end
 
-  add_index "recurring_events", ["game_type_id"], name: "index_recurring_events_on_game_type_id"
-  add_index "recurring_events", ["location_id"], name: "index_recurring_events_on_location_id"
+  add_index "recurring_events", ["game_type_id"], name: "index_recurring_events_on_game_type_id", using: :btree
+  add_index "recurring_events", ["location_id"], name: "index_recurring_events_on_location_id", using: :btree
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -99,8 +107,8 @@ ActiveRecord::Schema.define(version: 20130912002755) do
     t.datetime "updated_at"
   end
 
-  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
-  add_index "roles", ["name"], name: "index_roles_on_name"
+  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
+  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "user_profiles", force: true do |t|
     t.string   "nickname"
@@ -112,7 +120,7 @@ ActiveRecord::Schema.define(version: 20130912002755) do
     t.string   "home_address"
   end
 
-  add_index "user_profiles", ["user_id"], name: "index_user_profiles_on_user_id"
+  add_index "user_profiles", ["user_id"], name: "index_user_profiles_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                              default: "", null: false
@@ -140,15 +148,15 @@ ActiveRecord::Schema.define(version: 20130912002755) do
     t.string   "invitation_token"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["event_invite_id"], name: "index_users_on_event_invite_id"
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["event_invite_id"], name: "index_users_on_event_invite_id", using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "users_roles", id: false, force: true do |t|
     t.integer "user_id"
     t.integer "role_id"
   end
 
-  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
 end

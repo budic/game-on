@@ -9,7 +9,7 @@
               <%= r.recurring_event.name %> - <%= r.recurring_event.game_type.name %>
           </div>
           <div>
-            <%=  get_time_string( r.recurring_event.start_time, r.recurring_event.end_time ) %>
+            <%=  get_timestring( r.recurring_event.start_time, r.recurring_event.end_time ) %>
           </div>
           <div>
             <%= r.recurring_event.location.name %>

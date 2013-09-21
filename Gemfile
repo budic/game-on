@@ -39,7 +39,6 @@ gem 'protected_attributes'
 gem 'geocoder'
 gem 'simple_enum'
 gem "combined_time_select", "~> 0.0.1"
-
 gem 'unicorn'
 
 group :doc do
