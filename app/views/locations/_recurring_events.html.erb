@@ -17,7 +17,7 @@
       <%time += " - " + r.end_time.strftime("%l:%M %P") %>
       <% end %>
     <% end %> 
-    <div > <%= time %> </div>
+    <div > <%= get_timestring( r.start_time, r.end_time ) %> </div>
     <span class="stars"> <%= r.level %></span> 
   </div>
   
