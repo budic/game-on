@@ -64,7 +64,7 @@ class LocationsController < ApplicationController
   end
   
   def nearby
-    if !params[:search]
+    if !params[:search] || params[:search] == ""
       params[:search] = get_home_address().presence || request.location.address
     end   
     @locations  = Location.near(params[:search], 20) 
