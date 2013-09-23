@@ -14,7 +14,9 @@
             <%= link_to Date::DAYNAMES[ r.day ],  r.location.name  %> 
             </strong>
           </span> 
-          <span class='pull-right'><%= number_with_precision(r.distance, :precision => 1) %> miles away</span>
+          <% if @has_distance %>
+            <span class='pull-right'><%= number_with_precision(r.distance, :precision => 1) %> miles away</span>
+          <% end %>
           <div >
             <%=  get_timestring( r.start_time, r.end_time ) %>  
           </div>         

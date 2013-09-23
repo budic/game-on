@@ -110,12 +110,17 @@ class RecurringEventsController < ApplicationController
   end
 
   def nearby
+    @has_distance = true
     if !params[:search]
       params[:search] = get_home_address().presence || request.location.address
           #params[:search] = request.location.address
     end
     
     @recurring_events  = RecurringEvent.joins(:location).near(params[:search], 20).order(:day, :start_time)
+    if @recurring_events.count.zero?
+      @recurring_events = RecurringEvent.joins(:location).find(:all, :order => 'day, start_time')
+      @has_distance = false
+    end
   end
 
   def follow

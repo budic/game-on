@@ -14,11 +14,15 @@
             <%= link_to l.name,  l %> 
             </strong>
           </span> 
-          <span class='pull-right hidden-xs hidden-sm'><%= number_with_precision(l.distance, :precision => 1) %> miles away</span>     
+          <% if @has_distance %>
+            <span class='pull-right hidden-xs hidden-sm'><%= number_with_precision(l.distance, :precision => 1) %> miles away</span>  
+          <% end %>
           <div>
             <%= l.address %>
           </div>
-          <span class='visible-xs visible-sm'><%= number_with_precision(l.distance, :precision => 1) %> miles away</span> 
+          <% if @has_distance %>
+            <span class='visible-xs visible-sm'><%= number_with_precision(l.distance, :precision => 1) %> miles away</span> 
+          <% end %>
         </div>
       <br>
       <% end %>
