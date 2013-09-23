@@ -10,13 +10,6 @@
     </span> 
     <br>
     <%= r.name %>
-    <% time = "" %>
-    <%if r.start_time %>
-    <% time += r.start_time.strftime("%l:%M %P") %>
-      <% if r.end_time %>
-      <%time += " - " + r.end_time.strftime("%l:%M %P") %>
-      <% end %>
-    <% end %> 
     <div > <%= get_timestring( r.start_time, r.end_time ) %> </div>
     <span class="stars"> <%= r.level %></span> 
   </div>
