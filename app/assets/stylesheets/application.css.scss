@@ -72,7 +72,7 @@ span.stars span {
   left: 0;
 
   /* edit: added z-index */
-  z-index: 1;
+  z-index: 999;
 
   /* edit: fixes overlap error in IE7/8, 
      make sure you have an empty gif */
