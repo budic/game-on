@@ -8,6 +8,6 @@
      <%= @event.name %>,  <%=  @event.location.name %><br>
      <%= @event.start_date.in_time_zone.strftime("%A, %B %d") %><br> 
      <%= @event.start_date.in_time_zone.strftime("%I:%M %p") %> - <%= @event.end_date.strftime("%I:%M %p") %><br>    
-     <%= @url+"/events/"+@event.id %>
+     <%= @url+"/events/"+@event.id.to_s %>
   </body>
 </html>
