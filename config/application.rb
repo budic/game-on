@@ -27,7 +27,7 @@ module GameOn
     # config.i18n.default_locale = :de
     config.filter_parameters += [:password, :password_confirmation]
     
-    config.action_mailer.default_url_options = { :host => 'http://intense-everglades-3973.herokuapp.com/' }
+    config.action_mailer.default_url_options = { :host => 'http://goplay.herokuapp.com/' }
     
     config.autoload_paths += Dir["#{config.root}/lib/"]
   end

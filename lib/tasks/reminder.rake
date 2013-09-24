@@ -41,4 +41,20 @@ namespace :reminder do
     end
   end
 
+  desc "Test SMS"
+  task test_sms: :environment do
+    @event = Event.find( 5 )
+    tolist = Array.new
+    tolist.push( '8586997329@txt.att.net' )
+    UserMailer.event_sms_reminder( @event, tolist).deliver
+  end
+  
+  desc "Test Email"
+  task test_email: :environment do
+    @event = Event.find( 5 )
+    tolist = Array.new
+    tolist.push( 'pete.budic@gmail.com' )
+    UserMailer.event_sms_reminder( @event, tolist).deliver
+  end
+  
 end
