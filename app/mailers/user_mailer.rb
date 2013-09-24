@@ -11,14 +11,14 @@ class UserMailer < ActionMailer::Base
     @event = event
     @url = 'http://goplay.herokuapp.com/'
     
-    mail(to: tolist.join(","), subject:  'Game Reminder Email from Leftcoastal Games')
+    mail(to: tolist.join(","), subject:  'Game Reminder Email from Game-on')
   end
   
   def event_sms_reminder( event, tolist )
     @event = event
     @url = 'http://goplay.herokuapp.com/'
     
-    mail(to: tolist.join(","), subject:  'Game Reminder Email from Leftcoastal Games')
+    mail(to: tolist.join(","), subject:  'Game-On reminder')
   end
   
 end
