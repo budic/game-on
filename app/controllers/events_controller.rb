@@ -135,36 +135,45 @@ class EventsController < ApplicationController
       yesRecs = EventInvite.where(  :event_id => @event.id ).where( :status_cd => 0 )
       for y in yesRecs
         @yes+=1
+        name = ""
         profile = UserProfile.find_by_user_id( y.user_id )
         if profile.presence
-          yesNames.push( profile.nickname )
-        else
-          yesNames.push( y.user.name )
-        end       
+          name = profile.nickname 
+        end
+        if !name || name == ""
+          name = y.user.name 
+        end 
+      yesNames.push( name )      
       end
       @yesNames = yesNames.join(", ")
         
       noRecs = EventInvite.where(  :event_id => @event.id ).where( :status_cd => 1 )
       for n in noRecs
         @no+=1
+        name = ""
         profile = UserProfile.find_by_user_id( n.user_id )
         if profile.presence
-          noNames.push( profile.nickname )
-        else
-          noNames.push( n.user.name )
+          name = profile.nickname 
+        end
+        if !name || name == ""
+          name = n.user.name 
         end    
+        noNames.push( name )
       end
       @noNames = noNames.join(", ")
         
       maybeRecs = EventInvite.where(  :event_id => @event.id ).where( :status_cd => 2 )
       for m in maybeRecs
         @maybe+=1
+        name = ""
         profile = UserProfile.find_by_user_id( m.user_id )
         if profile.presence
-          maybeNames.push( profile.nickname )
-        else
-          maybeNames.push( m.user.name )
+          name = profile.nickname
+        end
+        if !name || name == ""
+          name = m.user.name 
         end    
+        maybeNames.push( name )
       end
       @maybeNames = maybeNames.join(", ")
     end

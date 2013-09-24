@@ -1,7 +1,8 @@
 class UserProfilesController < ApplicationController
+
   before_action :set_user_profile, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
   before_filter :authenticate_user!
+  load_and_authorize_resource
   
   # GET /user_profiles
   # GET /user_profiles.json
@@ -23,7 +24,7 @@ class UserProfilesController < ApplicationController
 
   # GET /user_profiles/1/edit
   def edit
-    #authorize! :edit, @user, :message => 'Not authorized as an administrator.'
+    #authorize! :edit, current_user, :message => 'Not authorized as an administrator.'
   end
   
   def editself
@@ -50,7 +51,7 @@ class UserProfilesController < ApplicationController
   # PATCH/PUT /user_profiles/1
   # PATCH/PUT /user_profiles/1.json
   def update
-    authorize! :update, @user, :message => 'Not authorized as an administrator.'
+
     respond_to do |format|
       if @user_profile.update(user_profile_params)
         format.html { redirect_to root_path, notice: 'User profile was successfully updated.' }
