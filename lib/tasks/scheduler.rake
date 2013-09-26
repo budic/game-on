@@ -1,11 +1,3 @@
-
-  desc "Remove old"
-  task removeold: :environment do
-    # Get all events more than 1 day old and delete them
-    Event.destroy_all(['end_date < ?', 1.days.ago])
-    puts 'Old records removed'
-  end
-
   desc "Reset all"
   task resetall: :environment do
     # Get all events more than 1 day old and delete them
@@ -17,8 +9,10 @@
     puts 'Old records removed'
   end
 
-  desc "Add new"
-  task addnew: :environment do
+
+  desc "Process recurring events"
+  task process_weekly: :environment do
+    # Add upcoming events
     time = Time.zone.now
     RecurringEvent.where('next_gen_date < ? OR next_gen_date IS NULL', time).find_each do |r|
     #RecurringEvent.all.each do |r| 
@@ -51,11 +45,15 @@
       r.save()
       
     end
+    # Get all events more than 1 day old and delete them
+    Event.destroy_all(['end_date < ?', 1.days.ago])
+    puts 'Old records removed'
   end
 
-  desc "Send Reminder Email"
-  task send_reminder_email: :environment do
-    #Get all the events taht
+desc "Send Reminder Email and texts"
+  task send_reminders: :environment do
+    require "net/http"
+    #Send Reminder Emails
     Event.where( 'next_reminder_time <= ? AND next_reminder_type_cd = 0' , Time.zone.now + 5.minutes ).find_each do |e|
       @event = e
       tolist = Array.new
@@ -69,17 +67,14 @@
       e.save()
     end
     
-  end
-
-  desc "Send Reminder SMS"
-  task send_sms_reminder: :environment do
+    #Send text messages/SMS
     Event.where( 'next_reminder_time <= ? AND next_reminder_type_cd = 1', Time.zone.now + 5.minutes ).find_each do |e|
       @event = e
       tolist = Array.new
       EventInvite.where( 'event_id = ?' , @event.id ).find_each do |invite|
         userprofile = UserProfile.find( invite.user_id )
         usernumber = userprofile.sms_number
-        carriers = ['@txt.att.net', '@vtext.com']
+        carriers = ['@mms.att.net', '@vzwpix.com']
         
         if !usernumber.nil? && !userprofile.sms_carrier_cd.nil?
           usernumber = usernumber + carriers[ userprofile.sms_carrier_cd ]
@@ -92,13 +87,7 @@
       e.next_reminder_time = nil
       e.next_reminder_type_cd = nil
       e.save()
-    end
-  end
-
-
-  desc "Pings PING_URL to keep a dyno alive"
-  task :health_check do
-    require "net/http"
+    end   
     
     if ENV['PING_URL']
       uri = URI(ENV['PING_URL'])
@@ -116,7 +105,7 @@
   
   desc "Test Email"
   task test_email: :environment do
-    @event = Event.find( 6 )
+    @event = Event.find( 6 ) 
     tolist = Array.new
     tolist.push( 'pete.budic@gmail.com' )
     UserMailer.event_sms_reminder( @event, tolist).deliver
