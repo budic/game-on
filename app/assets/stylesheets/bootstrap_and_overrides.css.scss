@@ -91,3 +91,12 @@ $height: 42px;
     border-top-color: #e6c1c7; }
   .alert-danger .alert-link {
     color: #953b39; }
+
+
+.btn-primary > a {
+  color: #fff;
+  &:visited {
+    color: #fff;
+  }
+    
+}

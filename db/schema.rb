@@ -14,8 +14,10 @@
 ActiveRecord::Schema.define(version: 20130921040629) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
+  if ENV['RAILS_ENV'].to_s != 'test'
+    enable_extension "plpgsql"
+  end 
+  
   create_table "event_invites", force: true do |t|
     t.integer  "status_cd"
     t.datetime "created_at"

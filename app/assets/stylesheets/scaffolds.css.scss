@@ -26,6 +26,7 @@ a {
 
 }
 
+
 div {
   &.field, &.actions {
     margin-bottom: 10px;
@@ -70,3 +71,10 @@ div {
   }
 }
 
+.btn {
+  color: #fff;
+  &:visited {
+    color: #fff;
+  }
+    
+}
