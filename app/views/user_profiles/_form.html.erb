@@ -4,8 +4,14 @@
   <div class="inputs">
     <%= f.input :nickname, :input_html => {:class => 'form-control' } %>
     <%= f.input :sms_number, label: 'SMS Number', as: 'tel', :input_html => {:class => 'form-control' } %>
-    <%= f.label 'Cell Carrier' %>
-    <%= select( :user_profile, :sms_carrier, UserProfile.sms_carriers.keys, :html => {:class => 'form-control' } ) %>
+    
+    <div class="control-group">
+      <label class="control-label" for=:sms_carrier>Cell Carrier</label>
+      <div>
+        <%= select( :user_profile, :sms_carrier, UserProfile.sms_carriers.keys, :html => {:class => 'form-control' } ) %>
+      </div>
+    </div>
+
     <%= f.input :home_address,  :input_html => {:class => 'form-control' } %>
     <div class='hidden'>
       <%= f.input :user_id,  :input_html => {:class => 'hidden' }  %>

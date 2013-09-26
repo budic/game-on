@@ -2,11 +2,13 @@ class RecurringEventsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_recurring_event, only: [:show, :edit, :update, :destroy]
   helper_method :get_time_string
+  load_and_authorize_resource
 
   # GET /recurring_events
   # GET /recurring_events.json
-  def index
+  def index      
     @recurring_events = RecurringEvent.all
+    authorize! :index, RecurringEvent.new , :message => 'Not authorized to view this list.'
   end
 
   # GET /recurring_events/1
@@ -14,6 +16,7 @@ class RecurringEventsController < ApplicationController
   def show
     @location = Location.find( @recurring_event.location_id )
     @myevent = RecEventFollow.find_by_user_id_and_recurring_event_id( current_user.id, @recurring_event.id )
+    authorize! :show, @recurring_event, :message => 'Not authorized as an administrator.'
     
   end
 
@@ -21,6 +24,8 @@ class RecurringEventsController < ApplicationController
   def new
     @recurring_event = RecurringEvent.new
     @recurring_event.game_type_id = 1
+    authorize! :create, @recurring_event , :message => 'Not authorized as an administrator.'
+    
     if params[:location_id]
       @recurring_event.location_id = params[:location_id]
       @location = Location.find( params[:location_id] )
@@ -33,6 +38,7 @@ class RecurringEventsController < ApplicationController
 
   # GET /recurring_events/1/edit
   def edit
+    authorize! :edit, @recurring_event , :message => 'Not authorized as an administrator.'
     sday = Date.today
     stime = Time.new( sday.year, sday.month, sday.day, @recurring_event.start_time.hour, @recurring_event.start_time.min)
     etime = Time.new( sday.year, sday.month, sday.day, @recurring_event.end_time.hour, @recurring_event.end_time.min)
@@ -50,6 +56,7 @@ class RecurringEventsController < ApplicationController
    
     @recurring_event = RecurringEvent.new(recurring_event_params)
      @location = Location.find( @recurring_event.location_id )
+    authorize! :create, @recurring_event , :message => 'Not authorized as an administrator.'
     respond_to do |format|
       if @recurring_event.save
         r = @recurring_event
@@ -110,6 +117,7 @@ class RecurringEventsController < ApplicationController
   end
 
   def nearby
+    authorize! :nearby, RecurringEvent.new , :message => 'Not authorized as an administrator.'
     @has_distance = true
     if !params[:search]
       params[:search] = get_home_address().presence || request.location.address
@@ -119,8 +127,9 @@ class RecurringEventsController < ApplicationController
     @recurring_events  = RecurringEvent.joins(:location).near(params[:search], 20).order(:day, :start_time)
     if @recurring_events.count.zero?
       @recurring_events = RecurringEvent.joins(:location).find(:all, :order => 'day, start_time')
-      @has_distance = false
+      @has_distance = false  
     end
+    
   end
 
   def follow
@@ -128,7 +137,8 @@ class RecurringEventsController < ApplicationController
     @myevent.user_id = current_user.id
     @myevent.recurring_event_id = params[ :recurring_event_id ]
     @recurring_event = RecurringEvent.find( params[ :recurring_event_id ] )
- 
+    authorize! :follow, @recurring_event , :message => 'Not authorized as an administrator.'
+    
     respond_to do |format|
       if @myevent.save   
         event = Event.where( 'recurring_event_id = ? ', @myevent.recurring_event_id ).first
@@ -156,7 +166,7 @@ class RecurringEventsController < ApplicationController
         invite.destroy
       end
     end
-    
+    authorize! :unfollow, @recurring_event , :message => 'Not authorized as an administrator.'
     respond_to do |format|
       if @myevent.destroy   
         @myevent = RecEventFollow.find_by_user_id_and_recurring_event_id( current_user.id, params[ :recurring_event_id ] )

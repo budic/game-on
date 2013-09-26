@@ -7,14 +7,14 @@ class UserProfilesController < ApplicationController
   # GET /user_profiles
   # GET /user_profiles.json
   def index
-    authorize! :index, @user, :message => 'Not authorized as an administrator.'
+    authorize! :index, @user_profile, :message => 'Not authorized as an administrator.'
     @user_profiles = UserProfile.all
   end
 
   # GET /user_profiles/1
   # GET /user_profiles/1.json
   def show
-
+    authorize! :show, @user_profile, :message => 'Not authorized to view this profile.'
   end
 
   # GET /user_profiles/new
@@ -24,7 +24,7 @@ class UserProfilesController < ApplicationController
 
   # GET /user_profiles/1/edit
   def edit
-    #authorize! :edit, current_user, :message => 'Not authorized as an administrator.'
+    authorize! :edit, @user_profile, :message => 'Not authorized to edit this profile.'
   end
   
   def editself
@@ -36,7 +36,7 @@ class UserProfilesController < ApplicationController
   # POST /user_profiles.json
   def create
     @user_profile = UserProfile.new(user_profile_params)
-
+    authorize! :create, @user_profile, :message => 'Not authorized to create this profile.'
     respond_to do |format|
       if @user_profile.save
         format.html { redirect_to @user_profile, notice: 'User profile was successfully created.' }
@@ -51,7 +51,7 @@ class UserProfilesController < ApplicationController
   # PATCH/PUT /user_profiles/1
   # PATCH/PUT /user_profiles/1.json
   def update
-
+    authorize! :edit, @user_profile, :message => 'Not authorized to update this profile.'
     respond_to do |format|
       if @user_profile.update(user_profile_params)
         format.html { redirect_to root_path, notice: 'User profile was successfully updated.' }
@@ -66,6 +66,7 @@ class UserProfilesController < ApplicationController
   # DELETE /user_profiles/1
   # DELETE /user_profiles/1.json
   def destroy
+    authorize! :destroy, @user_profile, :message => 'Not authorized to delete this profile.'
     @user_profile.destroy
     respond_to do |format|
       format.html { redirect_to user_profiles_url }

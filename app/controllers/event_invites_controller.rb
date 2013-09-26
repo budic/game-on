@@ -1,17 +1,19 @@
 class EventInvitesController < ApplicationController
   before_action :set_event_invite, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
+  load_and_authorize_resource
+  
   # GET /event_invites
   # GET /event_invites.json
   def index
     @event_invites = EventInvite.all
-    authorize! :index, @user, :message => 'Not authorized as an administrator.'
+    authorize! :index, @event_invites, :message => 'Not authorized as an administrator.'
   end
 
   # GET /event_invites/1
   # GET /event_invites/1.json
   def show
-    authorize! :show, @user, :message => 'Not authorized as an administrator.'
+    authorize! :show, @event_invite, :message => 'Not authorized as an administrator.'
   end
 
   # GET /event_invites/new
@@ -21,14 +23,14 @@ class EventInvitesController < ApplicationController
 
   # GET /event_invites/1/edit
   def edit
-    authorize! :edit, @user, :message => 'Not authorized as an administrator.'
+    authorize! :edit, @event_invite, :message => 'Not authorized as an administrator.'
   end
 
   # POST /event_invites
   # POST /event_invites.json
   def create
     @event_invite = EventInvite.new(event_invite_params)
-
+    authorize! :create, @event_invite, :message => 'Not authorized as an administrator.'
     respond_to do |format|
       if @event_invite.save
         format.html { redirect_to @event_invite, notice: 'Event invite was successfully created.' }
@@ -43,6 +45,7 @@ class EventInvitesController < ApplicationController
   # PATCH/PUT /event_invites/1
   # PATCH/PUT /event_invites/1.json
   def update
+    authorize! :update, @event_invite, :message => 'Not authorized as an administrator.'
     respond_to do |format|
       if @event_invite.update(event_invite_params)
         format.html { redirect_to @event_invite, notice: 'Event invite was successfully updated.' }

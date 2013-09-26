@@ -5,16 +5,19 @@ class Ability
     user ||= User.new # guest user (not logged in)
     if user.has_role? :admin
       can :manage, :all
-    else
+    else     
+      # User Authorizations
+      can :show, User,  :id => user.id   
+
+      # Recurring Events      
+      can :manage, RecurringEvent
+      cannot :index, RecurringEvent
       
-    can :show, User,  :id => user.id
-    can :show, EventInvite,  :user_id => user.id
-    can :destroy, EventInvite, :user_id => user.id   
-    can :show, UserProfile, :user_id => user.id
-    can :edit, UserProfile, :user_id => user.id
-    can :editself, UserProfile, :user_id => user.id
-    can :update, UserProfile, :user_id => user.id
-      
+      # User Profiles
+      can :create, UserProfile, :user_id => user.id
+      can :edit, UserProfile, :user_id => user.id
+      can :editself, UserProfile, :user_id => user.id
+      can :update, UserProfile, :user_id => user.id     
     end  
   end
   
