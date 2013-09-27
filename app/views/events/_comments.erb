@@ -3,6 +3,7 @@
     <p>
       <div class="commentheader">      
         <% if event_comment.user %>
+          <span class="glyphicon glyphicon-user" style="padding-right:2px; font-size:12px"></span>
           <strong><%= event_comment.user.user_profile.nickname || event_comment.user.name %>:</strong>
         <% end %>
                <span class="commentbody"> <%= event_comment.comment %> </span>
@@ -12,18 +13,7 @@
       </div>
     </p>
   <% end %>
-  
-  <%= form_for([@event, @event.event_comments.build],:remote => true) do |f| %>
-  <p>
-    <%= f.text_area :comment, class: 'textareafull' %>
-  </p>
-  <p>
-    <%= button_to "Submit Comment", @event, remote: true, class: 'btn btn-primary' %>
-  </p>
-<% end %>
-
-<div>
-  <br><br>
+</div>
 
 
 

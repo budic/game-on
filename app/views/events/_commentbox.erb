@@ -1,8 +1,19 @@
 <div id="comment_toggle">
-  <span class="glyphicon glyphicon-eye-open" style="padding-right:2px; font-size:18px; z-index:-1"></span>
-  <strong> Comments</strong> (<%= @event.event_comments.count %>)
+  <span class="glyphicon glyphicon-chevron-down" style="padding-right:2px; font-size:14px"></span>
+  Comments (<%= @event.event_comments.count %>)
 </div>
-<div id="comment-box"  style="display:none">
+<div id="comment-box"  >
   <%= render 'comments' %>
 </div>
+<div id="submitcomments">
+  <%= form_for([@event, @event.event_comments.build],:remote => true) do |f| %>
+  <p>
+    <%= f.text_area :comment, class: 'textareafull' %>
+  </p>
+  <p>
+    <%= button_to "Submit Comment", @event, remote: true, class: 'btn btn-primary' %>
+  </p>
+<% end %>
+
+<div>
   

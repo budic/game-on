@@ -70,12 +70,12 @@
 
 #event-comments {
     margin-top: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 2px;
     padding-top: 5px;
     padding-bottom: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
-    border-width: 1px;
+    padding-left: 0px;
+    padding-right: 0px;
+    border-width: 0px;
     border-style: solid;
     border-color: #e0e0e0;
 }
@@ -85,7 +85,7 @@
     max-width: 100%;
 }
 
-#comments {
+#submitcomments {
     padding-bottom: 10px;
 }
 
@@ -103,6 +103,12 @@
   font-size: 9px;
   color: #999;
 }
+
+#comment_toggle {
+  font-style: bold;
+  font-size: 12px;
+}
+
 
 
 
