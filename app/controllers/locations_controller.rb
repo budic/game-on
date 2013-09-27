@@ -1,32 +1,37 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
+  load_and_authorize_resource
   
   # GET /locations
   # GET /locations.json
   def index
       @locations = Location.all 
+      authorize! :index, Location.new, :message => 'Not authorized as an administrator.'
   end
   
   # GET /locations/1
   # GET /locations/1.json
   def show
+    authorize! :show, @location, :message => 'Not authorized as an administrator.'
   end
 
   # GET /locations/new
   def new
     @location = Location.new
+    authorize! :create, @location, :message => 'Not authorized as an administrator.'
   end
 
   # GET /locations/1/edit
   def edit
+    authorize! :edit, @location, :message => 'Not authorized as an administrator.'
   end
 
   # POST /locations
   # POST /locations.json
   def create
     @location = Location.new(location_params)
-
+    authorize! :create, @location, :message => 'Not authorized as an administrator.'
     respond_to do |format|
       if @location.save
         format.html { redirect_to @location, notice: 'Location was successfully created.' }
@@ -41,6 +46,7 @@ class LocationsController < ApplicationController
   # PATCH/PUT /locations/1
   # PATCH/PUT /locations/1.json
   def update
+    authorize! :update, @location, :message => 'Not authorized as an administrator.'
     respond_to do |format|
       if @location.update(location_params)
         format.html { redirect_to @location, notice: 'Location was successfully updated.' }
@@ -55,7 +61,7 @@ class LocationsController < ApplicationController
   # DELETE /locations/1
   # DELETE /locations/1.json
   def destroy
-    authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
+    authorize! :destroy, @location, :message => 'Not authorized as an administrator.'
     @location.destroy
     respond_to do |format|
       format.html { redirect_to locations_url }
@@ -64,13 +70,15 @@ class LocationsController < ApplicationController
   end
   
   def nearby
+    authorize! :nearby, Location.new, :message => 'Not authorized as an administrator.'
     @has_distance = true
     if !params[:search] || params[:search] == ""
       params[:search] = get_home_address().presence || request.location.address
     end   
-    @locations  = Location.near(params[:search], 20) 
+    
+    @locations  = Location.paginate(:page => params[:page]).near(params[:search], 20) 
     if @locations.count.zero?
-      @locations = Location.find(:all)
+      @locations = Location.paginate(:page => params[:page]).find(:all)
       @has_distance = false
     end
   end

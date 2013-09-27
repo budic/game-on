@@ -124,9 +124,9 @@ class RecurringEventsController < ApplicationController
           #params[:search] = request.location.address
     end
     
-    @recurring_events  = RecurringEvent.joins(:location).near(params[:search], 20).order(:day, :start_time)
+    @recurring_events  = RecurringEvent.paginate(:page => params[:page]).joins(:location).near(params[:search], 20).order(:day, :start_time)
     if @recurring_events.count.zero?
-      @recurring_events = RecurringEvent.joins(:location).find(:all, :order => 'day, start_time')
+      @recurring_events = RecurringEvent.paginate(:page => params[:page]).joins(:location).find(:all, :order => 'day, start_time')
       @has_distance = false  
     end
     

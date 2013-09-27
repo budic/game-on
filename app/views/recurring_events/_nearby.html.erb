@@ -31,8 +31,12 @@
       <br>
       <% end %>
     </div>
+        
   <% end %>
-  <% else %>
+        <div class='flickr_pagination'>
+            <%= will_paginate @recurring_events %>
+        </div>
+<% else %>
   <p> No games found near the search address. </p>
 <p> 
 <% end %>

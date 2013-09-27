@@ -1,16 +1,19 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
+  load_and_authorize_resource
+  
   # GET /events
   # GET /events.json
   def index
     @events = Event.all
-    authorize! :index, @user, :message => 'Not authorized as an administrator.'
+    authorize! :index, Event.new, :message => 'Not authorized as an administrator.'
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
+    authorize! :show, @event, :message => 'Not authorized as an administrator.'
     @invite = EventInvite.find_by_user_id_and_event_id( current_user.id, @event.id )
     set_counts()
   end
@@ -18,17 +21,19 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    authorize! :create, @event, :message => 'Not authorized as an administrator.'
   end
 
   # GET /events/1/edit
   def edit
+    authorize! :edit, @event, :message => 'Not authorized as an administrator.'
   end
 
   # POST /events
   # POST /events.json
   def create
     @event = Event.new(event_params)
-
+    authorize! :create, @event, :message => 'Not authorized as an administrator.'
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -43,6 +48,7 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+    authorize! :update, @event, :message => 'Not authorized as an administrator.'
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
@@ -57,6 +63,7 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
+    authorize! :destroy, @event, :message => 'Not authorized as an administrator.'
     @event.destroy
     respond_to do |format|
       format.html { redirect_to events_url }

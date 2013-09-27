@@ -41,6 +41,7 @@ gem 'simple_enum'
 gem "combined_time_select", "~> 0.0.1"
 gem 'unicorn'
 gem 'newrelic_rpm'
+gem 'will_paginate', '~> 3.0.5'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

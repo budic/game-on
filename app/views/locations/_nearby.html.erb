@@ -3,7 +3,9 @@
 <%= submit_tag("Search", {class: 'btn btn-success btn-xs col-lg-2 col-md-2 col-sm-3 col-xs-3'}) %>
 <% end %>
 <br><br>
+
 <% if !@locations.count.zero? %>
+  
   <% @locations.each do | l | %>
     <div class="location">
       <%= link_to l do %>
@@ -28,7 +30,11 @@
       <% end %>
     </div>
   <% end %>
-  <% else %>
-  <p> No locations found near the search address. </p>
-<p> 
+  <div class='flickr_pagination'>
+    <%= will_paginate @locations %>
+  </div>
+
+
+<% else %>
+<p> No locations found near the search address. </p>
 <% end %>

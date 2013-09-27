@@ -13,6 +13,19 @@ class Ability
       can :manage, RecurringEvent
       cannot :index, RecurringEvent
       
+      # Recurring Event Follows
+      can :mygames, RecEventFollow
+      
+      # Events
+      can :show, Event
+      
+      #Locations
+      can :show, Location
+      can :edit, Location
+      can :update, Location
+      can :create, Location
+      can :nearby, Location
+      
       # User Profiles
       can :create, UserProfile, :user_id => user.id
       can :edit, UserProfile, :user_id => user.id
