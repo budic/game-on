@@ -15,6 +15,7 @@ class EventsController < ApplicationController
   def show
     authorize! :show, @event, :message => 'Not authorized as an administrator.'
     @invite = EventInvite.find_by_user_id_and_event_id( current_user.id, @event.id )
+    @comment = EventComment.new
     set_counts()
   end
 
@@ -123,6 +124,28 @@ class EventsController < ApplicationController
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end   
+  end
+  
+  def comment
+    @event = Event.find(params[:event_id])
+    comment = EventComment.new
+    comment.comment = params[:comment]
+    comment.event_id = params[:event_id]
+    comment.user_id = current_user.id
+    if comment.comment
+      
+      respond_to do |format|
+        if comment.save   
+          format.js
+          format.html { redirect_to @event, notice: 'Comment added.' }
+          format.json { render action: 'show', status: :created, location: @event }
+        else
+          format.js
+          format.html { render action: 'show' }
+          format.json { render json: @event.errors, status: :unprocessable_entity }
+        end
+      end
+    end 
   end
   
   private

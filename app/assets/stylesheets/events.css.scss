@@ -16,7 +16,8 @@
     padding-top: 8px;
     padding-bottom: 20px;
     margin-bottom: 10px;
-    position: absolute;
+    
+    z-index: 100;
 }
 
 .yesnames {
@@ -37,7 +38,7 @@
     color: black;
     display: none;
     padding-top: 8px;
-    position: absolute;
+
 }
 
 .nonames {
@@ -58,7 +59,7 @@
     color: black;
     display: none;
     padding-top: 8px;
-    position: absolute;
+
 }
 
 .maybenames {
@@ -66,3 +67,22 @@
     margin-right: 6px;
     padding-top: 1px;
 }
+
+#event-comments {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #e0e0e0;
+}
+
+.textareafull {
+    width: 100%;
+    max-width: 100%;
+}
+
+

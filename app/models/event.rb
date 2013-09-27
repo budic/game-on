@@ -7,6 +7,7 @@ class Event < ActiveRecord::Base
   has_one :recurring_event
   has_many :event_invites, dependent: :destroy
   has_many :users, through: :event_invites
+  has_many :event_comments, dependent: :destroy
   
   reverse_geocoded_by "locations.latitude", "locations.longitude"
    

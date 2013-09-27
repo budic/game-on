@@ -19,7 +19,11 @@ $ ->
         () -> $('#maybepopup').fadeIn("fast")
         () -> $('#maybepopup').fadeOut("fast")
     )
-    
+
+$ ->
+   $('#comment_toggle').click(
+        () -> $('#comment-box').slideToggle()
+    )
     
 
     

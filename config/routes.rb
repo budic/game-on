@@ -16,7 +16,9 @@ GameOn::Application.routes.draw do
       get 'rsvp_yes'
       get 'rsvp_no'
       get 'rsvp_maybe'
+      post 'comment'
     end
+    resources :event_comments
   end
 
   resources :game_types

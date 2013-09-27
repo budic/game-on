@@ -1,0 +1,8 @@
+<div id="comment_toggle">
+  <span class="glyphicon glyphicon-eye-open" style="padding-right:2px; font-size:18px; z-index:-1"></span>
+  <strong> Comments ( <%= @event.event_comments.count %> )</strong>
+</div>
+<div id="comment-box"  style="display:none">
+  <%= render 'comments' %>
+</div>
+  

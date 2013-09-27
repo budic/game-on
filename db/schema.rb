@@ -11,13 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130921040629) do
+ActiveRecord::Schema.define(version: 20130927021255) do
 
   # These are extensions that must be enabled in order to support this database
-  if ENV['RAILS_ENV'].to_s != 'test'
-    enable_extension "plpgsql"
-  end 
-  
+  enable_extension "plpgsql"
+
+  create_table "event_comments", force: true do |t|
+    t.string   "comment"
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "event_invites", force: true do |t|
     t.integer  "status_cd"
     t.datetime "created_at"

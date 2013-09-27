@@ -13,23 +13,21 @@
 <br>
 <div>
   <span id="yesimage">
-    <%= @yes.to_s %>  <span class="glyphicon glyphicon-thumbs-up" style="padding-right:15px; font-size:24px; color: #2ecc71" ></span>
-    <% if @yes > 0 %>
-    <div id='yespopup'><div class='yesnames'> <%= @yesNames %> </div></div>
-    <% end %>
+    <%= @yes.to_s %>  <span class="glyphicon glyphicon-thumbs-up" style="padding-right:15px; font-size:24px; color: #2ecc71" ></span>   
   </span>
   <span id="noimage">
-    <%= @no.to_s %> <span class="glyphicon glyphicon-thumbs-down" style="padding-right:15px; font-size:24px; color: #e74c3c" ></span>
-    <% if @no > 0 %>
-      <div id='nopopup'><div class='nonames'> <%= @noNames %> </div></div>
-    <% end %>
+    <%= @no.to_s %> <span class="glyphicon glyphicon-thumbs-down" style="padding-right:15px; font-size:24px; color: #e74c3c" ></span> 
   </span>
    <span id="maybeimage">
     <%= @maybe.to_s %>  <span class="glyphicon glyphicon-question-sign" style="font-size:24px; color: #f1c40f"></span>
-    <% if @maybe > 0 %>
-     <div id='maybepopup'><div class='maybenames'> <%= @maybeNames %> </div></div>
-    <% end %>
   </span>
-  
-  
-<div>
+  <% if @yes > 0 %>
+    <div id='yespopup'><div class='yesnames'> <%= @yesNames %> </div></div>
+  <% end %>
+  <% if @no > 0 %>
+    <div id='nopopup'><div class='nonames'> <%= @noNames %> </div></div>  
+  <% end %>
+  <% if @maybe > 0 %>
+    <div id='maybepopup'><div class='maybenames'> <%= @maybeNames %> </div></div>
+  <% end %>
+</div>

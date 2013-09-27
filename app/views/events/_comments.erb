@@ -1,0 +1,24 @@
+<div id="comments">
+  <br>
+  <% for event_comment in @event.event_comments %>
+    <p>
+        <% if event_comment.user %>
+          <%= event_comment.user.user_profile.nickname || event_comment.user.name %>
+        <% end %>
+        (<%= event_comment.created_at.in_time_zone.strftime("%b %d, %I:%M %P") %>): <%= event_comment.comment %></p>
+  <% end %>
+  
+  <%= form_for([@event, @event.event_comments.build],:remote => true) do |f| %>
+  <p>
+    <%= f.text_area :comment, class: 'textareafull' %>
+  </p>
+  <p>
+    <%= button_to "Submit Comment", @event, remote: true, class: 'btn btn-primary' %>
+  </p>
+<% end %>
+
+<div>
+  <br><br>
+
+
+
