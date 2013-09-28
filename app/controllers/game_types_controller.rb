@@ -14,25 +14,25 @@ class GameTypesController < ApplicationController
   # GET /game_types/1
   # GET /game_types/1.json
   def show
-    authorize! :show, @game_type.new, :message => 'Not authorized as an administrator.'
+    authorize! :show, @game_type, :message => 'Not authorized as an administrator.'
   end
 
   # GET /game_types/new
   def new
     @game_type = GameType.new
-    authorize! :create, @game_type.new, :message => 'Not authorized as an administrator.'
+    authorize! :create, @game_type, :message => 'Not authorized as an administrator.'
   end
 
   # GET /game_types/1/edit
   def edit
-    authorize! :edit, @game_type.new, :message => 'Not authorized as an administrator.'
+    authorize! :edit, @game_type, :message => 'Not authorized as an administrator.'
   end
 
   # POST /game_types
   # POST /game_types.json
   def create
     @game_type = GameType.new(game_type_params)
-    authorize! :create, @game_type.new, :message => 'Not authorized as an administrator.'
+    authorize! :create, @game_type, :message => 'Not authorized as an administrator.'
     respond_to do |format|
       if @game_type.save
         format.html { redirect_to @game_type, notice: 'Game type was successfully created.' }
@@ -47,7 +47,7 @@ class GameTypesController < ApplicationController
   # PATCH/PUT /game_types/1
   # PATCH/PUT /game_types/1.json
   def update
-    authorize! :update, @game_type.new, :message => 'Not authorized as an administrator.'
+    authorize! :update, @game_type, :message => 'Not authorized as an administrator.'
     respond_to do |format|
       if @game_type.update(game_type_params)
         format.html { redirect_to @game_type, notice: 'Game type was successfully updated.' }
@@ -62,7 +62,7 @@ class GameTypesController < ApplicationController
   # DELETE /game_types/1
   # DELETE /game_types/1.json
   def destroy
-    authorize! :destroy, @game_type.new, :message => 'Not authorized as an administrator.'
+    authorize! :destroy, @game_type, :message => 'Not authorized as an administrator.'
     @game_type.destroy
     respond_to do |format|
       format.html { redirect_to game_types_url }

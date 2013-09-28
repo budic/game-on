@@ -30,7 +30,10 @@ class Ability
       can :create, UserProfile, :user_id => user.id
       can :edit, UserProfile, :user_id => user.id
       can :editself, UserProfile, :user_id => user.id
-      can :update, UserProfile, :user_id => user.id     
+      can :update, UserProfile, :user_id => user.id    
+      
+      # Game Types
+      can :show, GameType
     end  
   end
   

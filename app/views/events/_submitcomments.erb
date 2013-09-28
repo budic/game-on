@@ -1,0 +1,10 @@
+<div id="submitcomments">
+  <%= form_for([@event, @event.event_comments.build],:remote => true) do |f| %>
+  <p>
+    <%= f.text_area :comment, class: 'textareafull' %>
+  </p>
+  <p>
+    <%= button_to "Submit Comment", @event, remote: true, class: 'btn btn-primary' %>
+  </p>
+<% end %>
+</div>
