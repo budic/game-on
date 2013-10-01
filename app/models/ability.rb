@@ -18,6 +18,13 @@ class Ability
       
       # Events
       can :show, Event
+      can :rsvp_yes, Event
+      can :rsvp_no, Event
+      can :rsvp_maybe, Event
+      
+      # EventInvite
+      can :update, EventInvite, :user_id => user.id
+      can :edit, EventInvite, :user_id => user.id    
       
       #Locations
       can :show, Location

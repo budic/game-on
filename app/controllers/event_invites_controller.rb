@@ -7,7 +7,7 @@ class EventInvitesController < ApplicationController
   # GET /event_invites.json
   def index
     @event_invites = EventInvite.all
-    authorize! :index, @event_invites, :message => 'Not authorized as an administrator.'
+    authorize! :index, EventInvite.new, :message => 'Not authorized as an administrator.'
   end
 
   # GET /event_invites/1
@@ -45,7 +45,7 @@ class EventInvitesController < ApplicationController
   # PATCH/PUT /event_invites/1
   # PATCH/PUT /event_invites/1.json
   def update
-    authorize! :update, @event_invite, :message => 'Not authorized as an administrator.'
+
     respond_to do |format|
       if @event_invite.update(event_invite_params)
         format.html { redirect_to @event_invite, notice: 'Event invite was successfully updated.' }
