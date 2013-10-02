@@ -194,7 +194,7 @@ class RecurringEventsController < ApplicationController
   
     # Never trust parameters from the scary internet, only allow the white list through.
     def recurring_event_params
-      params.require(:recurring_event).permit(:name, :location_id, :game_type_id, :start_time, :end_time, :day, :level)
+      params.require(:recurring_event).permit(:name, :location_id, :game_type_id, :start_time, :end_time, :day, :level, :hours_before_email, :hours_before_sms)
     end
   
 end

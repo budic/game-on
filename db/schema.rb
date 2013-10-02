@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130927021255) do
+ActiveRecord::Schema.define(version: 20131002023429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20130927021255) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "event_id"
+    t.boolean  "send_email"
+    t.boolean  "send_sms"
   end
 
   add_index "event_invites", ["event_id"], name: "index_event_invites_on_event_id", using: :btree
@@ -51,6 +53,8 @@ ActiveRecord::Schema.define(version: 20130927021255) do
     t.datetime "next_reminder_time"
     t.integer  "next_reminder_type_cd"
     t.boolean  "private"
+    t.integer  "hours_before_email"
+    t.integer  "hours_before_sms"
   end
 
   add_index "events", ["event_invite_id"], name: "index_events_on_event_invite_id", using: :btree
@@ -86,6 +90,8 @@ ActiveRecord::Schema.define(version: 20130927021255) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "recurring_event_id"
+    t.boolean  "send_email"
+    t.boolean  "send_sms"
   end
 
   add_index "rec_event_follows", ["recurring_event_id"], name: "index_rec_event_follows_on_recurring_event_id", using: :btree
@@ -102,6 +108,8 @@ ActiveRecord::Schema.define(version: 20130927021255) do
     t.integer  "day"
     t.float    "level"
     t.datetime "next_gen_date"
+    t.integer  "hours_before_email"
+    t.integer  "hours_before_sms"
   end
 
   add_index "recurring_events", ["game_type_id"], name: "index_recurring_events_on_game_type_id", using: :btree

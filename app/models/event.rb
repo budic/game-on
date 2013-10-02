@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  attr_accessible :name, :start_date, :end_date, :is_private, :location_id, :game_type_id, :event_type, :level, :next_reminder_time, :private
+  attr_accessible :name, :start_date, :end_date, :is_private, :location_id, :game_type_id, :event_type, :level, :next_reminder_time, :private, :hours_before_email, :hours_before_sms
   as_enum :event_type, :game => 0, :practice => 1, :scrimmage => 2, :open => 3
   as_enum :next_reminder_type, :email => 0, :sms => 1
   belongs_to :location

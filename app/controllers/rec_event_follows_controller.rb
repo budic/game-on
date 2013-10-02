@@ -83,7 +83,7 @@ class RecEventFollowsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rec_event_follow_params
-      params.require(:rec_event_follow).permit(:recurring_event_id, :user_id)
+      params.require(:rec_event_follow).permit(:recurring_event_id, :user_id, :send_email, :send_sms)
     end
   
 end

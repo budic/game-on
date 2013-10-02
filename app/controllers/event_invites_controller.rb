@@ -76,6 +76,6 @@ class EventInvitesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_invite_params
-      params.require(:event_invite).permit(:status, :user_id)
+      params.require(:event_invite).permit(:status, :user_id, :send_email, :send_sms)
     end
 end
