@@ -9,9 +9,11 @@ namespace :reminder do
         tolist.push( User.find( invite.user_id ).email )
       end  
       UserMailer.event_email_reminder( @event, tolist ).deliver
-      
-      e.next_reminder_time = e.start_date - 3.hours
-      e.next_reminder_type_cd = 1
+        
+      if e.hours_before_sms
+        ev.next_reminder_time = e.start_date - 1.hour * e.hours_before_sms
+        ev.next_reminder_type_cd = 1
+      end
       e.save()
     end
     

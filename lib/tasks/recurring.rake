@@ -34,9 +34,20 @@ namespace :recurring do
        
       ev = Event.find_or_create_by_recurring_event_id_and_start_date( r.id , stime )
       ev.name = r.name
-      rtime = stime - 1.day
-      ev.next_reminder_time = rtime
-      ev.next_reminder_type = 0
+      ev.hours_before_email = r.hours_before_email
+      ev.hours_before_sms = r.hours_before_sms
+      
+      if r.hours_before_email
+        rtime = stime - 1.hour * r.hours_before_email
+        ev.next_reminder_time = rtime
+        ev.next_reminder_type_cd = 0
+      else
+        if r.hours_before_sms
+          rtime = stime - 1.hour * r.hours_before_sms
+          ev.next_reminder_time = rtime
+          ev.next_reminder_type_cd = 1
+        end
+      end
       ev.start_date = stime 
       ev.end_date = etime
       ev.game_type_id = r.game_type_id

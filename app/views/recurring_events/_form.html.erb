@@ -45,6 +45,8 @@
         %> 
       </div>
     </div>
+    <%= f.input :hours_before_email, collection: 1..48, :input_html => {:class => 'form-control' }  %>
+    <%= f.input :hours_before_sms, collection: 1..24, :input_html => {:class => 'form-control' }  %>
     <%= f.input :location_id, :as => :hidden %>
   <br>
 <%= f.button :submit, "Save",:class => "btn btn-success" %>
