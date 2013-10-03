@@ -11,8 +11,8 @@ namespace :reminder do
       UserMailer.event_email_reminder( @event, tolist ).deliver
         
       if e.hours_before_sms
-        ev.next_reminder_time = e.start_date - 1.hour * e.hours_before_sms
-        ev.next_reminder_type_cd = 1
+        e.next_reminder_time = e.start_date - 1.hour * e.hours_before_sms
+        e.next_reminder_type_cd = 1
       end
       e.save()
     end
@@ -57,6 +57,48 @@ namespace :reminder do
     tolist = Array.new
     tolist.push( 'pete.budic@gmail.com' )
     UserMailer.event_sms_reminder( @event, tolist).deliver
+  end
+
+  desc "Send Reminder Email and texts"
+  task send_reminders: :environment do
+
+    #Send Reminder Emails
+    Event.where( 'next_reminder_time <= ? AND next_reminder_type_cd = 0' , Time.zone.now + 5.minutes ).find_each do |e|
+      @event = e
+      tolist = Array.new
+      EventInvite.where( 'event_id = ?' , @event.id ).find_each do |invite|
+        tolist.push( User.find( invite.user_id ).email )
+      end  
+      UserMailer.event_email_reminder( @event, tolist ).deliver
+     
+      if e.hours_before_sms
+        e.next_reminder_time = e.start_date - 1.hour * e.hours_before_sms
+        e.next_reminder_type_cd = 1
+      end
+      e.save()
+    end
+    
+    #Send text messages/SMS
+    Event.where( 'next_reminder_time <= ? AND next_reminder_type_cd = 1', Time.zone.now + 5.minutes ).find_each do |e|
+      @event = e
+      tolist = Array.new
+      EventInvite.where( 'event_id = ?' , @event.id ).find_each do |invite|
+        userprofile = UserProfile.find( invite.user_id )
+        usernumber = userprofile.sms_number
+        carriers = ['@mms.att.net', '@vzwpix.com']
+        
+        if !usernumber.nil? && !userprofile.sms_carrier_cd.nil?
+          usernumber = usernumber + carriers[ userprofile.sms_carrier_cd ]
+          tolist.push( usernumber )
+        end
+        
+      end  
+      UserMailer.event_sms_reminder( @event, tolist ).deliver
+      
+      e.next_reminder_time = nil
+      e.next_reminder_type_cd = nil
+      e.save()
+    end   
   end
   
 end

@@ -75,8 +75,8 @@ desc "Send Reminder Email and texts"
       UserMailer.event_email_reminder( @event, tolist ).deliver
      
       if e.hours_before_sms
-        ev.next_reminder_time = e.start_date - 1.hour * e.hours_before_sms
-        ev.next_reminder_type_cd = 1
+        e.next_reminder_time = e.start_date - 1.hour * e.hours_before_sms
+        e.next_reminder_type_cd = 1
       end
       e.save()
     end
