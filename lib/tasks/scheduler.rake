@@ -14,7 +14,7 @@
   task process_weekly: :environment do
     # Add upcoming events
     #Time.zone='Pacific Time (US & Canada)'
-    time = Time.zone.now
+ time = Time.zone.now
     RecurringEvent.where('next_gen_date < ? OR next_gen_date IS NULL', time).find_each do |r|
     #RecurringEvent.all.each do |r| 
 
